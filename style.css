@@ -1,0 +1,80 @@
+/* Basic reset for margins and paddings */
+body, h1, p, div, label, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main container to align the diagram and control panel */
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Multiplexer diagram styling */
+#mux-diagram {
+    margin-right: 20px;
+}
+
+/* Control panel styling */
+#mux-control-panel {
+    width: 300px;
+}
+
+/* Header styling */
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input and selector styling */
+.mux-inputs, .mux-selectors {
+    margin-bottom: 20px;
+}
+
+.mux-inputs label, .mux-selectors label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mux-inputs input[type="checkbox"], .mux-selectors input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Output styling */
+.mux-output {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+/* Highlight active lines */
+.active-line {
+    stroke: red;
+    stroke-width: 3;
+}
+
+/* Output indicator style */
+#output-indicator {
+    fill: red;
+}

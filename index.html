@@ -3,12 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUX</title>
+    <title>4-to-1 Multiplexer Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to MUX</h1>
-    <a href="practise.html">practise question</a>
-    <a href="showcase.html">showcase</a>
+    <div id="container">
+        <!-- Multiplexer Diagram -->
+        <div id="mux-diagram">
+            <svg width="200" height="300">
+                <!-- Inputs -->
+                <line id="line-in0" x1="20" y1="50" x2="100" y2="50" stroke="black" stroke-width="2"></line>
+                <line id="line-in1" x1="20" y1="100" x2="100" y2="100" stroke="black" stroke-width="2"></line>
+                <line id="line-in2" x1="20" y1="150" x2="100" y2="150" stroke="black" stroke-width="2"></line>
+                <line id="line-in3" x1="20" y1="200" x2="100" y2="200" stroke="black" stroke-width="2"></line>
+
+                <!-- Multiplexer box -->
+                <rect x="100" y="40" width="80" height="180" fill="lightgray" stroke="black" stroke-width="2"></rect>
+                <text x="115" y="135" font-size="16" fill="black">MUX</text>
+
+                <!-- Output -->
+                <line id="line-out" x1="180" y1="120" x2="250" y2="120" stroke="black" stroke-width="2"></line>
+                <circle id="output-indicator" cx="250" cy="120" r="5" fill="red"></circle>
+            </svg>
+        </div>
+
+        <!-- Control Panel -->
+        <div id="mux-control-panel">
+            <h1>4-to-1 Multiplexer</h1>
+            <div class="mux-inputs">
+                <label for="input0">Input 0:</label>
+                <input type="checkbox" id="input0">
+                
+                <label for="input1">Input 1:</label>
+                <input type="checkbox" id="input1">
+                
+                <label for="input2">Input 2:</label>
+                <input type="checkbox" id="input2">
+                
+                <label for="input3">Input 3:</label>
+                <input type="checkbox" id="input3">
+            </div>
+            <div class="mux-selectors">
+                <label for="selector0">Selector 0:</label>
+                <input type="checkbox" id="selector0">
+                
+                <label for="selector1">Selector 1:</label>
+                <input type="checkbox" id="selector1">
+            </div>
+            <div class="mux-output">
+                <p>Output: <span id="output">0</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
