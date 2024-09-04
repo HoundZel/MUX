@@ -37,6 +37,17 @@ body {
     width: 300px;
 }
 
+#mux-control-panel table{
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    margin-top: 30px;
+}
+
+.button_lab{
+    text-align: right;
+}
+
 /* Header styling */
 h1 {
     font-size: 24px;
@@ -55,9 +66,52 @@ h1 {
     margin-bottom: 5px;
 }
 
-.mux-inputs input[type="checkbox"], .mux-selectors input[type="checkbox"] {
-    margin-right: 10px;
+/* Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
 }
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
 
 /* Output styling */
 .mux-output {
@@ -77,4 +131,59 @@ h1 {
 /* Output indicator style */
 #output-indicator {
     fill: red;
+}
+
+/* K-Map styling */
+#kmap {
+    margin: 0 auto;
+    text-align: center;
+    width: fit-content;
+    margin-top: 30px;
+}
+
+
+#kmap-grid-wrapper {
+    display: grid;
+    grid-template-columns: 20px repeat(2, 50px); /* First column for S2 labels */
+    grid-template-rows: 20px repeat(2, 50px); /* First row for S1 labels */
+    gap: 10px;
+}
+
+.kmap-corner {
+    /* This cell is left empty to maintain the layout */
+}
+
+.kmap-axis-label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#kmap-grid {
+    grid-column: 2 / span 2; /* The K-map cells occupy columns 2 and 3 */
+    grid-row: 2 / span 2;    /* The K-map cells occupy rows 2 and 3 */
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    /* border: 1px solid #000; */
+    /* gap: 10px; */
+}
+
+.kmap-cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.kmap-axis-label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
