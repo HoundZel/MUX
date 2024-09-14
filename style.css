@@ -149,10 +149,6 @@ input:checked + .slider:before {
     gap: 10px;
 }
 
-.kmap-corner {
-    /* This cell is left empty to maintain the layout */
-}
-
 .kmap-axis-label {
     font-weight: bold;
     display: flex;
