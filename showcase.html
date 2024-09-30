@@ -3,20 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUX - Showcase</title>
+    <title>4-to-1 Multiplexer Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<nav>
-    <div class="logo">
-        <h4>MUX</h4>
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="practise.html">Practise</a></li>
-        <li><a href="showcase.html">Showcase</a></li>
-    </ul>
-</nav>
 <body>
-    
+    <div id="container">
+        <!-- Multiplexer Diagram -->
+        <div id="mux-diagram">
+            <svg width="200" height="350">
+                <!-- Inputs with labels A, B, C, D -->
+                <text x="10" y="55" font-size="16" fill="black">A</text>
+                <line id="line-in0" x1="30" y1="50" x2="60" y2="50" stroke="black" stroke-width="2"></line>
+                
+                <text x="10" y="105" font-size="16" fill="black">B</text>
+                <line id="line-in1" x1="30" y1="100" x2="60" y2="100" stroke="black" stroke-width="2"></line>
+                
+                <text x="10" y="155" font-size="16" fill="black">C</text>
+                <line id="line-in2" x1="30" y1="150" x2="60" y2="150" stroke="black" stroke-width="2"></line>
+                
+                <text x="10" y="205" font-size="16" fill="black">D</text>
+                <line id="line-in3" x1="30" y1="200" x2="60" y2="200" stroke="black" stroke-width="2"></line>
+
+                <!-- Multiplexer box -->
+                <rect x="60" y="40" width="80" height="180" fill="lightgray" stroke="black" stroke-width="2"></rect>
+                <text x="81" y="135" font-size="16" fill="black">MUX</text>
+
+                <!-- Selectors S1 and S2 -->
+                <text x="75" y="265" font-size="16" fill="black">S1</text>
+                <line id="line-s1" x1="87" y1="220" x2="87" y2="250" stroke="black" stroke-width="2"></line>
+
+                <text x="104" y="265" font-size="16" fill="black">S2</text>
+                <line id="line-s2" x1="114" y1="220" x2="114" y2="250" stroke="black" stroke-width="2"></line>
+
+                <!-- Output -->
+                <line id="line-out" x1="140" y1="120" x2="170" y2="120" stroke="black" stroke-width="2"></line>
+                <circle id="output-indicator" cx="250" cy="120" r="5" fill="red"></circle>
+                <text x="175" y="125" font-size="16" fill="black" id="output-label"></text>
+            </svg>
+        </div>
+
+        <!-- Control Panel -->
+        <div id="mux-control-panel">
+            <h1>4-to-1 Multiplexer</h1>
+            <div class="mux-inputs">
+                <table>
+                <tr>
+                    <td><label for="input0" class="button_lab">A</label></td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="input0">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+
+                    <td><label for="input1" class="button_lab">B</label></td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="input1">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="input2" class="button_lab">C</label></td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="input2">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                
+                    <td><label for="input3" class="button_lab">D</label></td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="input3">
+                            <span class="slider"></span>
+                        </label>
+                    </td>
+                </tr>
+                
+            </div>
+            <div class="mux-selectors">
+                <tr>
+                <td><label for="selector0" class="button_lab">S1</label></td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox" id="selector0">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+                
+                <td><label for="selector1" class="button_lab">S2</label></td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox" id="selector1">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+                </tr>
+                </table>
+            </div>
+            <div class="mux-output">
+                <p>Output: <span id="output">0</span></p>
+            </div>
+
+            <!-- K-Map Display -->
+            <div id="kmap">
+                <h2>K-Map</h2>
+                <div id="kmap-grid-wrapper">
+                    <!-- Top-left corner (empty for diagonal line or space) -->
+                    <div class="kmap-corner">
+                        <svg width="50" height="50">
+                            <line x1="0" y1="0" x2="50" y2="50" stroke="black" stroke-width="2"/>
+                            <text x="17" y="15" font-weight="bold" font-size="12" fill="black">S1</text>
+                            <text x="0" y="30" font-weight="bold" font-size="12" fill="black">S2</text>
+                        </svg>
+                    </div>
+            
+                    <!-- Top labels -->
+                    <div class="kmap-axis-label">0</div>
+                    <div class="kmap-axis-label">1</div>
+            
+                    <!-- Left labels and K-map cells -->
+                    <div class="kmap-axis-label">0</div>
+                    <div id="kmap-grid">
+                        <!-- K-map cells will be populated by JS -->
+                    </div>
+                    <div class="kmap-axis-label">1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
