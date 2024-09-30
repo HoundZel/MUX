@@ -1,0 +1,90 @@
+.centralized-div {
+    border: 2px solid black;
+    border-radius: 5%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(95vw, 90vh);
+    height: min(95vw, 90vh);
+
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    grid-template-areas: 
+    "dropdown dropdown"
+    "mux truth_table"
+    "mux truth_table"
+    "mux truth_table"
+    "mux truth_table"
+    "mux truth_table"
+    "mux truth_table"
+}
+
+.dropdown {
+    grid-area: dropdown;
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#multiplexer-select {
+    width: 80%;
+    height: 80%;
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    text-align-last: center; /* For modern browsers */
+    -moz-text-align-last: center; /* For Firefox */
+}
+
+.mux{
+    grid-area: mux;
+    /* border: 2px solid green; */
+}
+
+.truth_table {
+    grid-area: truth_table;
+    display: flex;
+    justify-content: flex-start; /* Flush contents to the left */
+    align-items: center;
+    height: 85%;
+    box-sizing: border-box;
+    overflow: auto;
+    padding: 10px min(10vw,20px) 0 0;
+}
+
+#multiplexer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#multiplexer-container svg {
+    width: 100%;
+    height: auto;
+}
+
+.truth_table table {
+    width: 100%;
+    background-color: #fcffb2;
+    border-collapse: collapse;
+    margin: auto; /* Center the table horizontally */
+}
+
+.truth_table th, .truth_table td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.truth_table th {
+    border-bottom: 2px solid black;
+}
+
+.truth_table td:last-child {
+    border-left: 2px solid black;
+}

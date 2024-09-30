@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showcase</title>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="centralized-div">
+        <div class="dropdown">
+            <select id="multiplexer-select">
+                <option value="2-to-1">2 to 1 Multiplexer</option>
+                <option value="4-to-1" selected>4 to 1 Multiplexer</option>
+                <option value="8-to-1">8 to 1 Multiplexer</option>
+                <option value="16-to-1">16 to 1 Multiplexer</option>
+            </select>
+        </div>
+        <div class="mux">
+            <div id="multiplexer-container"></div>
+        </div>
+        <div class="truth_table">three</div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
