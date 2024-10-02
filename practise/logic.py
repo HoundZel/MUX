@@ -12,7 +12,7 @@ import copy
 
 #let's simulate only 4 to 1 and 8 to 1 MUX for now 
 
-# how to solve a MUX question:
+# how to solve a MUX question (given min/maxterm -> design MUX):
 # step1: draw the kmap 
 # step2: Draw the MUX table since the input are 3 select and a input,
 #         we can choose 3 select from 3 variables,can be any of the 4 var. 
@@ -54,7 +54,7 @@ for i in inputs:
         inputs[i] = random.choice(list(z_track.get(temp)))
         z_track.pop(temp)
 
-print(inputs)
+print("randomly generated MUX: " + str(inputs))
 
 #size of kmap determined by the number of variables in z eg.z(a,b,c,d) = 2**4 = 16
 kmap = []
@@ -67,6 +67,7 @@ def binary_counter(n):
 truth_table = binary_counter(num_of_input)
 # print(truth_table)
 
+#solving min/maxterm given MUX
 #step1: loop kmap in binary (abcd)
 #step2: deep copy input dictionary and assign values to the unknown variables in select and input
 #step3: use truth table to find output based off current mux variables in select and input
@@ -80,6 +81,38 @@ for kmap_index in kmap_bin:
     curr_input = copy.deepcopy(inputs)
     curr_var_dict = {}
     abcd = {}
+
     for i in range(len(kmap_index)):
-        abcd[chr(65+i)] = kmap_index[i]
+        abcd[chr(97+i)] = kmap_index[i]
+        if kmap_index[i] == '0':
+            abcd[chr(97+i)+'\u0304'] = '1'
+        else:
+            abcd[chr(97+i)+'\u0304'] = '0'
     # print(abcd)
+
+    for j in curr_input:
+        if curr_input.get(j) in abcd:
+            curr_input[j] = abcd.get(curr_input.get(j))
+    # print(curr_input)
+
+    selector_combi = ''.join([str(curr_input[key]) for key in sorted(curr_input.keys(), reverse=True) if 'S' in key])
+    # print(selector_combi)
+
+    for k in range(len(truth_table)):
+        if selector_combi == truth_table[k]:
+            kmap.append(curr_input.get('I'+str(k)))
+    # print(kmap)
+
+print("kmap is: " + str(kmap))
+
+minterm = []
+maxterm = []
+
+for i in range(len(kmap)):
+    if kmap[i] == '1':
+        minterm.append(i)
+    else:
+        maxterm.append(i)
+
+print("minterm is: " + str(minterm))
+print("maxterm is: " + str(maxterm))
