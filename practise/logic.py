@@ -1,6 +1,4 @@
-import math
-import random
-import copy
+import math, random, copy, re
 
 # num_of_input = input("Enter the number of input: ")
 # num_of_select = math.log2(num_of_input)
@@ -24,35 +22,69 @@ import copy
 
 #we use z(a,b,c,d) to represent the output of the MUX for now 
 
+def AND(x, y):
+    return str(int(x) & int(y))
+
+def OR(x, y):
+    return str(int(x) | int(y))
+
+def XOR(x, y):
+    return str(int(x) ^ int(y))
+
+def XNOR(x, y):
+    return str(1 - (int(x) ^ int(y)))
+
+def NAND(x, y):
+    return str(1 - (int(x) & int(y)))
+
+def NOR(x, y):
+    return str(1 - (int(x) | int(y)))
+
 # inititated multiplexer config
 num_of_input = random.choice([4, 8])
 num_of_select = int(math.log2(num_of_input))
 
 inputs = {}
+select = []
 
 for i in range(num_of_input):
     inputs["I"+str(i)] = 0
 
 for j in range(num_of_select):
-    inputs["S"+str(j)] = 0
+    select.append("S"+str(j))
 
 z = {
     "A" : ['a','a\u0304'],
     "B" : ['b','b\u0304'],
     "C" : ['c','c\u0304'],
-    "D" : ['d','d\u0304'],
     "binary" : ['0','1']
 }
 
+if num_of_input == 8:
+    z["D"] = ['d', 'd\u0304']
+
 z_track = copy.deepcopy(z)
+z_track["gate"] = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR']
 
 for i in inputs:
     if len(z_track) == 0:
         inputs[i] = random.choice(random.choice(list(z.values())))
     else:
         temp = random.choice(list(z_track.keys()))
-        inputs[i] = random.choice(list(z_track.get(temp)))
-        z_track.pop(temp)
+        if temp == "gate":
+            first_choice = random.choice(random.choice(list(z.values())))
+            second_choice = first_choice
+            while second_choice == first_choice:
+                second_choice = random.choice(random.choice(list(z.values())))
+            inputs[i] = first_choice + " " + random.choice(list(z_track.get(temp))) + " " + second_choice
+            z_track.pop(temp)
+        else:
+            inputs[i] = random.choice(list(z_track.get(temp)))
+            z_track.pop(temp)
+
+for j in select:
+    inputs[j] = random.choice(random.choice(list(z.values())))
+
 
 print("randomly generated MUX: " + str(inputs))
 
@@ -77,9 +109,11 @@ truth_table = binary_counter(num_of_input)
 kmap_bin = binary_counter(2**(len(z)-1))
 # print(kmap_bin)
 
+gate_names = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR']
+gate_pattern = re.compile(r'\b(' + '|'.join(gate_names) + r')\b')
+
 for kmap_index in kmap_bin:
     curr_input = copy.deepcopy(inputs)
-    curr_var_dict = {}
     abcd = {}
 
     for i in range(len(kmap_index)):
@@ -91,6 +125,20 @@ for kmap_index in kmap_bin:
     # print(abcd)
 
     for j in curr_input:
+        if gate_pattern.search(curr_input.get(j)):
+            parts = curr_input.get(j).split(" ")
+            value_1 = abcd.get(parts[0]) if parts[0] in abcd else parts[0]
+            gate = parts[1]
+            value_2 = abcd.get(parts[2]) if parts[2] in abcd else parts[2]
+            # print([value_1, gate, value_2])
+            
+            # Retrieve the function object from the function name
+            gate_function = globals()[gate]
+            
+            # Call the function with the required arguments
+            result = gate_function(value_1, value_2)
+            curr_input[j] = result
+
         if curr_input.get(j) in abcd:
             curr_input[j] = abcd.get(curr_input.get(j))
     # print(curr_input)
@@ -111,7 +159,7 @@ maxterm = []
 for i in range(len(kmap)):
     if kmap[i] == '1':
         minterm.append(i)
-    else:
+    elif kmap[i] == '0':
         maxterm.append(i)
 
 print("minterm is: " + str(minterm))
