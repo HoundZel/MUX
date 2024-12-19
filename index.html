@@ -3,11 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Multiplexers</title>
+    <link rel="icon" href="media/MUX_final.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <br><a href="old_showcase/showcase.html">old_Showcase</a>
-    <br><a href="showcase/showcase.html">new_Showcase</a>
-    <br><a href="practise/practise.html">quiz/practise</a>
+    <header class="header">
+        <div class="header_content">
+            <a href="#head" class="logo">MUX</a>
+
+            <nav class="nav">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="old_showcase/showcase.html" class="nav_link">Beta</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="showcase/showcase.html" class="nav_link">Showcase</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="practise/practise.html" class="nav_link">Quiz</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.logo');
+    
+            for (const link of links) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+
+<!-- <br><a href="old_showcase/showcase.html">old_Showcase</a>
+<br><a href="showcase/showcase.html">new_Showcase</a>
+<br><a href="practise/practise.html">quiz/practise</a> -->

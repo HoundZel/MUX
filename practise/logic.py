@@ -122,7 +122,7 @@ for kmap_index in kmap_bin:
             abcd[chr(97+i)+'\u0304'] = '1'
         else:
             abcd[chr(97+i)+'\u0304'] = '0'
-    # print(abcd)
+    print(abcd)
 
     for j in curr_input:
         if gate_pattern.search(curr_input.get(j)):
@@ -130,7 +130,7 @@ for kmap_index in kmap_bin:
             value_1 = abcd.get(parts[0]) if parts[0] in abcd else parts[0]
             gate = parts[1]
             value_2 = abcd.get(parts[2]) if parts[2] in abcd else parts[2]
-            # print([value_1, gate, value_2])
+            print([value_1, gate, value_2])
             
             # Retrieve the function object from the function name
             gate_function = globals()[gate]
@@ -141,15 +141,15 @@ for kmap_index in kmap_bin:
 
         if curr_input.get(j) in abcd:
             curr_input[j] = abcd.get(curr_input.get(j))
-    # print(curr_input)
+    print(curr_input)
 
     selector_combi = ''.join([str(curr_input[key]) for key in sorted(curr_input.keys(), reverse=True) if 'S' in key])
-    # print(selector_combi)
+    print(selector_combi)
 
     for k in range(len(truth_table)):
         if selector_combi == truth_table[k]:
             kmap.append(curr_input.get('I'+str(k)))
-    # print(kmap)
+    print(kmap)
 
 print("kmap is: " + str(kmap))
 
