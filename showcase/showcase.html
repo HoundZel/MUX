@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>showcase</title>
+    <title>MUX - Showcase</title>
+    <link rel="icon" href="../media/MUX_final.ico" type="image/x-icon">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="styles.css" rel="stylesheet" />
+    <link href="../styles.css" rel="stylesheet" />
 </head>
+
 <body>
+    <header class="header">
+        <div class="header_content">
+            <a href="../index.html" class="logo">MUX</a>
+
+            <nav class="nav">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="../old_showcase/showcase.html" class="nav_link">Beta</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#head" class="nav_link">Showcase</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="../practise/practise.html" class="nav_link">Quiz</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
     <div class="centralized-div">
         <div class="dropdown">
             <select id="multiplexer-select">
@@ -23,5 +52,19 @@
         <div class="truth_table">three</div>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        const navE1 = document.querySelector('.nav');
+        const hamburgerE1 = document.querySelector('.hamburger');
+
+        hamburgerE1.addEventListener('click', () => {
+        navE1.classList.toggle("nav--open");
+        hamburgerE1.classList.toggle("hamburger--open");
+        });
+
+        navE1.addEventListener('click', () => {
+        navE1.classList.remove("nav--open");
+        hamburgerE1.classList.remove("hamburger--open");
+        });
+    </script>
 </body>
 </html>

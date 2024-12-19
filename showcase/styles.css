@@ -1,12 +1,15 @@
 .centralized-div {
     border: 2px solid black;
+    background-color: white;
     border-radius: 5%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: min(95vw, 90vh);
-    height: min(95vw, 90vh);
+    height: min(140vw, 90vh);
+    top: 54%;
+    overflow: hidden;
 
     display: inline-grid;
     grid-template-columns: 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -24,6 +27,7 @@
 .dropdown {
     grid-area: dropdown;
     border-bottom: 2px solid black;
+    background-color: gray;
     display: flex;
     justify-content: center;
     align-items: center;
