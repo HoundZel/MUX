@@ -514,6 +514,8 @@
  .href-target {
 	 position: absolute;
 	 top: -2em;
+	 padding-top: 60px; /* Add padding to the top */
+     margin-top: -60px; /* Offset the padding with a negative margin */
 }
  .to-repo, .to-reset {
 	 display: -webkit-inline-flex;
@@ -566,7 +568,7 @@
 	 margin-right: 0.25em;
 }
  section h1.package-name {
-	 font-size: 2rem;
+	 font-size: 1.7rem;
 	 margin-bottom: 0.75rem;
 	 margin-top: -0.5rem;
 }

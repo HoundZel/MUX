@@ -22,7 +22,7 @@
             <span style="--index: 2;">MUX</span>
         </div>
         <div class="introText">
-            <h3>Your one stop site to know everything about multiplexers.</h3>
+            <h3 id="subtitle" ></h3>
         </div>
         <a href="#nav_bar" class="arrowdown">
             <svg viewBox="0 0 24 24" width="100" height="100" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
@@ -63,24 +63,12 @@
             <nav class="nav2">
             <ul>
                 <li>
-                <a href="#introduction">
+                    <a href="#introduction">
                     <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
                         <circle cx="12" cy="12" r="10"></circle>
                         <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                     </svg>
                     Introduction</a>
-                </li>
-                <li>
-                    <a href="#types">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
-                            <line x1="8" y1="6" x2="21" y2="6"></line>
-                            <line x1="8" y1="12" x2="21" y2="12"></line>
-                            <line x1="8" y1="18" x2="21" y2="18"></line>
-                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                        </svg>
-                        Types</a>
                 </li>
                 <li>
                     <a href="#function">
@@ -100,7 +88,7 @@
                             <polyline points="9 11 12 14 22 4"></polyline>
                             <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                         </svg>
-                        Exercise</a>
+                        Practice</a>
                 </li>
                 <li>
                     <a href="#resource">
@@ -122,25 +110,168 @@
         </div>
         <main class="demo-page-content">
             <section>
-            <div class="href-target" id="intro"></div>
-            <h1 class="package-name">nice-forms.css</h1>
+            <div class="href-target" id="introduction"></div>
+            <h1 class="package-name">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+                Introduction
+            </h1>
+            <div class="base_img">
+            <img src="media/sample.png" alt="MUX" class="intro-image">
+            </div>
             <p>
-                I like pretty forms and clean HTML 😄 That's why I created
-                <strong>nice-forms.css</strong> to help devs who want to hit the
-                ground running, but don't want to stare at default input fields when
-                doing so 💩
+                A multiplexer, often abbreviated as "mux," is a digital electronic device that selects one of several input signals and forwards the selected input to a single output line. The selection of the input signal is controlled by additional inputs known as select lines or control lines.
             </p>
-            <strong>In a nutshell:</strong>
+            <p>
+                <strong><u>Key Points about Multiplexers:</u></strong>
+            </p>
+            <p>
+                <strong>1. Inputs and Outputs:</strong><br>
+                A multiplexer has multiple input lines and a single output line.
+                The number of input lines is typically a power of two (e.g., 2, 4, 8, 16, etc.).
+            </p>
+            <p>
+                <strong>2. Select Lines:</strong><br>
+                The number of select lines determines how many input lines the multiplexer can handle.
+                For n select lines, the multiplexer can have 2 <sup style="font-size: 0.7em; vertical-align: super;">n</sup> input lines.
+                For example, a multiplexer with 3 select lines can handle 8 input lines (2<sup style="font-size: 0.7em; vertical-align: super;">3</sup> = 8).
+            </p>
+            <p>
+                <strong>3. Functionality:</strong><br>
+                The select lines are used to choose which input line's signal is sent to the output.
+                The combination of the select lines' binary values determines which input is selected.
+            </p>
+            <p>
+                <strong>4. Applications:</strong><br>
+                Multiplexers are used in various applications, including data routing, signal selection, communication systems, and resource sharing in digital circuits.
+            </p>
+            <strong><u>Webpage Content:</u></strong>
             <ul>
-                <li>It provides a sensible input styling 'reset'</li>
-                <li>Get nice looking forms with zero effort</li>
-                <li>Easily customizable with css-variables</li>
-                <li>
-                Perfect for rapid prototyping or tweak it and make it your own.
-                </li>
-                <li>No hacks or unnecessary elements, pure semantics</li>
+                <li><a href="#function"><u>Functionality of Multiplexer</u></a></li>
+                <li><a href="#exercise"><u>Practice Questions</u></a></li>
+                <li><a href="#resource"><u>Additional Resources</u></a></li>
+                <li><a href="#about"><u>About</u></a></li>
+                <li><a href="showcase/showcase.html"><u>Interactive Multiplexer Showcase</u></a></li>
+                <li><a href="practise/practise.html"><u>Quiz Questions</u></a></li>
             </ul>
+            <br>
+            <p>
+                <strong>** Side Note:</strong> This project is centered around the multiplexer syllabus content of Nanyang Technological Univeristy's (NTU) EE2004/IE2104 module.<strong>**</strong>
+            </p>
             </section>
+
+            <section>
+                <div class="href-target" id="function"></div>
+                <h1 class="package-name">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line>
+                        <line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line>
+                        <line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line>
+                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                        <line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                    Functionality
+                </h1>
+                <p>
+                    I like pretty forms and clean HTML 😄 That's why I created
+                    <strong>nice-forms.css</strong> to help devs who want to hit the
+                    ground running, but don't want to stare at default input fields when
+                    doing so 💩
+                </p>
+                <strong>Content:</strong>
+                <ul>
+                    <li>It provides a sensible input styling 'reset'</li>
+                    <li>Get nice looking forms with zero effort</li>
+                    <li>Easily customizable with css-variables</li>
+                    <li>
+                    Perfect for rapid prototyping or tweak it and make it your own.
+                    </li>
+                    <li>No hacks or unnecessary elements, pure semantics</li>
+                </ul>
+            </section>
+
+            <section>
+                <div class="href-target" id="exercise"></div>
+                <h1 class="package-name">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                        <polyline points="9 11 12 14 22 4"></polyline>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    Practice Questions
+                </h1>
+                <p>
+                    I like pretty forms and clean HTML 😄 That's why I created
+                    <strong>nice-forms.css</strong> to help devs who want to hit the
+                    ground running, but don't want to stare at default input fields when
+                    doing so 💩
+                </p>
+                <strong>Content:</strong>
+                <ul>
+                    <li>It provides a sensible input styling 'reset'</li>
+                    <li>Get nice looking forms with zero effort</li>
+                    <li>Easily customizable with css-variables</li>
+                    <li>
+                    Perfect for rapid prototyping or tweak it and make it your own.
+                    </li>
+                    <li>No hacks or unnecessary elements, pure semantics</li>
+                </ul>
+            </section>
+
+            <section>
+                <div class="href-target" id="resource"></div>
+                <h1 class="package-name">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Additional Resources
+                </h1>
+                <p>
+                    I like pretty forms and clean HTML 😄 That's why I created
+                    <strong>nice-forms.css</strong> to help devs who want to hit the
+                    ground running, but don't want to stare at default input fields when
+                    doing so 💩
+                </p>
+                <strong>Content:</strong>
+                <ul>
+                    <li>It provides a sensible input styling 'reset'</li>
+                    <li>Get nice looking forms with zero effort</li>
+                    <li>Easily customizable with css-variables</li>
+                    <li>
+                    Perfect for rapid prototyping or tweak it and make it your own.
+                    </li>
+                    <li>No hacks or unnecessary elements, pure semantics</li>
+                </ul>
+            </section>
+
+            <section>
+                <div class="href-target" id="about"></div>
+                <h1 class="package-name">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    About
+                </h1>
+                <p>
+                    If you encounter a bug on any device or have suggestions for
+                    improvement, don't hesitate to open a bug report or pull request.
+                </p>
+    
+                <a href="https://github.com/HoundZel/MUX" class="to-repo" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    Check out the repo
+                </a>
+            </section>
+
+            <hr style="border: 1px solid red;">
+            <br>
 
             <section>
             <div class="href-target" id="installation"></div>
@@ -680,29 +811,6 @@
             </h1>
             <p>The styling is highly customizable using css variables.</p>
             <script src="https://gist.github.com/nielsVoogt/63daf967a17776d00f5923048cf28daf.js"></script>
-            </section>
-
-            <section>
-            <div class="href-target" id="contribute"></div>
-            <h1>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                Contribute
-            </h1>
-            <p>
-                If you encounter a bug on any device or have suggestions for
-                improvement, don't hesitate to open a bug report or pull request.
-            </p>
-
-            <a href="https://github.com/nielsVoogt/nice-forms.css" class="to-repo" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                Check out the repo
-            </a>
             </section>
 
             <footer style="color:whitesmoke;font-family: 'Montserrat', sans-serif;">Poon Qi Chuan - 2025</footer>
