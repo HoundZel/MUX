@@ -448,7 +448,7 @@
 	 box-sizing: border-box;
 }
  body {
-	 background: #f3f0e7;
+	 background: #333333;
 	 font-family: Roboto, sans-serif;
 	 color: #4b5563;
 	 -webkit-font-smoothing: antialiased;
@@ -459,7 +459,7 @@
 	 margin: 0 auto;
 	 display: -webkit-flex;
 	 display: flex;
-	 max-width: 55em;
+	 max-width: 75em;
 }
  .demo-page .demo-page-navigation {
 	 width: 18em;
@@ -473,7 +473,7 @@
  .demo-page .demo-page-navigation nav {
 	 position: -webkit-sticky;
 	 position: sticky;
-	 top: 2em;
+	 top: 5em;
 	 background: #fff;
 	 padding: 0.5em;
 	 border-radius: 0.75rem;

@@ -1,0 +1,10 @@
+What to add into the landing page:
+-Intro to MUX + Digital electronics -> what it does + what this site offers (demo + quiz) + content page -- Introduction
+-types of MUX -- Diversity 
+-how a MUX/DMUX works (TDLR) -- Functionality
+-example qn + solution (interactive ?) -- Exercise
+-additional reading resources(?) -- Resources
+
+~About~
+-project purpose
+-github repo

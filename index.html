@@ -7,21 +7,31 @@
     <link rel="icon" href="media/MUX_final.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="nice-forms/nice-forms.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- background -->
+    <video id="animated-background" class="animated-background" muted>
+        <source class="pcb" src="media/pcb.mp4" type="video/mp4">
+    </video>
+
     <header id="intro" class="intro">
-        <video id="animated-background" class="animated-background" muted>
-            <source class="pcb" src="media/pcb.mp4" type="video/mp4">
-        </video>
-        <div class="introImg">
-            <img src="media/sample.png" alt="introImage">
+        <div class="introImg" style="--stacks: 3;">
+            <span style="--index: 0;">MUX</span>
+            <span style="--index: 1;">MUX</span>
+            <span style="--index: 2;">MUX</span>
         </div>
         <div class="introText">
-            <h3>Welcome to Professionals Catering, where we bring culinary excellence to your events. Our team of experienced chefs and dedicated staff are committed to providing exceptional service and delicious food that will leave a lasting impression on your guests. Whether it's a corporate event, wedding, or private party, we tailor our menus to suit your needs and preferences. </h3>
+            <h3>Your one stop site to know everything about multiplexers.</h3>
         </div>
+        <a href="#nav_bar" class="arrowdown">
+            <svg viewBox="0 0 24 24" width="100" height="100" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </a>
     </header>
 
-    <div class="header">
+    <div id="nav_bar" class="header">
         <div class="header_content">
             <a href="#intro" class="logo">MUX</a>
 
@@ -50,117 +60,62 @@
     <!-- whole ass form -->
     <div class="demo-page">
         <div class="demo-page-navigation">
-            <nav>
+            <nav class="nav2">
             <ul>
                 <li>
-                <a href="#installation">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tool">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                <a href="#introduction">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                     </svg>
-                    Installation</a>
+                    Introduction</a>
                 </li>
                 <li>
-                <a href="#structure">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                    <polyline points="2 17 12 22 22 17" />
-                    <polyline points="2 12 12 17 22 12" />
-                    </svg>
-                    Structure</a>
+                    <a href="#types">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                        Types</a>
                 </li>
                 <li>
-                <a href="#input-types">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-justify">
-                    <line x1="21" y1="10" x2="3" y2="10" />
-                    <line x1="21" y1="6" x2="3" y2="6" />
-                    <line x1="21" y1="14" x2="3" y2="14" />
-                    <line x1="21" y1="18" x2="3" y2="18" />
-                    </svg>
-                    Input types</a>
+                    <a href="#function">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                            <rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line>
+                            <line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line>
+                            <line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line>
+                            <line x1="20" y1="14" x2="23" y2="14"></line>
+                            <line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line>
+                        </svg>
+                        Functionality</a>
                 </li>
                 <li>
-                <a href="#checkbox-and-radio">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square">
-                    <polyline points="9 11 12 14 22 4" />
-                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                    </svg>
-                    Checkbox and Radio</a>
+                    <a href="#exercise">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Exercise</a>
                 </li>
                 <li>
-                <a href="#fieldset">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg)" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns">
-                    <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18" />
-                    </svg>
-                    Fieldset</a>
-                </li>
-
-                <li>
-                <a href="#icons">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather">
-                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
-                    <line x1="16" y1="8" x2="2" y2="22" />
-                    <line x1="17.5" y1="15" x2="9" y2="15" />
-                    </svg>
-                    Icons</a>
+                    <a href="#resource">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Resources</a>
                 </li>
                 <li>
-                <a href="#validation">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                    <line x1="12" y1="9" x2="12" y2="13" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
-                    </svg>
-                    Validation</a>
-                </li>
-                <li>
-                <a href="#date">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                    Date input</a>
-                </li>
-                <li>
-                <a href="#other">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-server">
-                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-                    <line x1="6" y1="6" x2="6.01" y2="6" />
-                    <line x1="6" y1="18" x2="6.01" y2="18" />
-                    </svg>
-                    Other input types</a>
-                </li>
-                <li>
-                <a href="#reset">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power">
-                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
-                    <line x1="12" y1="2" x2="12" y2="12" />
-                    </svg>
-                    Reset only</a>
-                </li>
-                <li>
-                <a href="#customization">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders">
-                    <line x1="4" y1="21" x2="4" y2="14" />
-                    <line x1="4" y1="10" x2="4" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="12" />
-                    <line x1="12" y1="8" x2="12" y2="3" />
-                    <line x1="20" y1="21" x2="20" y2="16" />
-                    <line x1="20" y1="12" x2="20" y2="3" />
-                    <line x1="1" y1="14" x2="7" y2="14" />
-                    <line x1="9" y1="8" x2="15" y2="8" />
-                    <line x1="17" y1="16" x2="23" y2="16" />
-                    </svg>
-                    Customization</a>
-                </li>
-                <li>
-                <a href="#contribute">
+                <a href="#about">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                     </svg>
-                    Contribute</a>
+                    About</a>
                 </li>
             </ul>
             </nav>
@@ -750,14 +705,14 @@
             </a>
             </section>
 
-            <footer>Made with ♥ for CSS</footer>
+            <footer style="color:whitesmoke;font-family: 'Montserrat', sans-serif;">Poon Qi Chuan - 2025</footer>
         </main>
     </div>
 
     <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.logo');
+            const links = document.querySelectorAll(' .arrowdown, .logo');
     
             for (const link of links) {
                 link.addEventListener('click', function(event) {
