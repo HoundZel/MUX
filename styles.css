@@ -1,3 +1,4 @@
+/* navigation bar */
 *{
     margin: 0;
     padding: 0;
@@ -21,7 +22,7 @@ body{
 
 .header{
     background-color: black;
-    position : fixed;
+    position : sticky;
     width: 100%;
     top: 0;
     z-index: 10; 
@@ -126,13 +127,106 @@ body{
     }
 }
 
+/* introduction segment */
 .animated-background {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
-    display: none; /* Initially hidden */
+    /* display: none; Initially hidden */
     z-index: -1; /* Ensure it is behind other content */
 }
+
+.intro{
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;   
+    text-align: center;
+    margin:0;
+    padding:0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.introImg{
+    position: relative;
+    z-index: 1;
+}
+
+.introText{
+    position: relative;
+    background-color: #daeaf9;
+    padding: 10px;
+    z-index: 1;
+}
+
+/* Mobile version */
+@media (max-width: 768px) {
+    .intro {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .introImg{
+        max-width: 90vw;
+        height: auto;
+    }
+
+    .introImg img{
+        margin: 10px 0 10px 0;
+        border-radius: 10%;
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 70vh; /* Set the maximum height */
+        object-fit: contain; /* Ensure the image scales properly */
+    }
+    
+    .introText{
+        margin: 10px 0 20px 0;
+        border-radius: 5%;
+        width: 90vw;
+        height: auto;
+    }
+}
+
+/* PC version */
+@media (min-width: 769px) {
+    .intro {
+        flex-direction: row;
+        align-items: center;
+        margin: 20px 0 20px 0;
+    }
+
+    .introImg{
+        max-width: 40vw;
+        height: auto;
+        display: block;
+        max-height: 70vh; /* Set the maximum height */
+        object-fit: contain; /* Ensure the image scales properly */
+        margin: 0 10px 0 10px;
+    }
+    
+    .introImg img{
+        border-radius: 20%;
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 70vh; /* Set the maximum height */
+        object-fit: contain; /* Ensure the image scales properly */
+    }
+
+    .introText{
+        border: 2px solid gray;
+        width: 50vw;
+        height: auto;
+        margin: 0 10px 0 10px;
+    }
+}
+
+/* form/ blog section */
