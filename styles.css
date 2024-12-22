@@ -353,3 +353,15 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.truthtable {
+    border: 1px solid;
+    width: 100%; /* Ensure the table takes the full width of its container */
+    aspect-ratio: 1 / 1; /* Maintain a 1:1 aspect ratio */
+    table-layout: fixed; /* Ensure the table cells are evenly distributed */
+}
+
+.truthtable th, .truthtable td {
+    text-align: center; /* Center align text in table cells */
+    padding: 10px; /* Add padding to table cells */
+}
