@@ -119,8 +119,9 @@
                 Introduction
             </h1>
             <div class="base_img">
-            <img src="media/sample.png" alt="MUX" class="intro-image">
+                <img src="media/irl.png" alt="irlMUX" class="intro-image">
             </div>
+            <br>
             <p>
                 A multiplexer, often abbreviated as "mux," is a digital electronic device that selects one of several input signals and forwards the selected input to a single output line. The selection of the input signal is controlled by additional inputs known as select lines or control lines.
             </p>
@@ -143,10 +144,14 @@
                 The select lines are used to choose which input line's signal is sent to the output.
                 The combination of the select lines' binary values determines which input is selected.
             </p>
-            <p>
-                <strong>4. Applications:</strong><br>
-                Multiplexers are used in various applications, including data routing, signal selection, communication systems, and resource sharing in digital circuits.
-            </p>
+            <strong>4. Applications:</strong>
+            <ul>
+                <li><strong>Data Selection:</strong> Multiplexers are used to select data from multiple sources and send it to a single destination.</li>
+                <li><strong>Communication Systems:</strong> They are used in communication systems to route signals from multiple sources to a single channel.</li>
+                <li><strong>Resource Sharing:</strong> Multiplexers allow multiple signals to share a single resource, such as a communication line or a processing unit.</li>
+                <li><strong>Digital Circuits:</strong> They are used in digital circuits for implementing logic functions and reducing the number of logic gates required.</li>
+            </ul>
+            <br>
             <strong><u>Webpage Content:</u></strong>
             <ul>
                 <li><a href="#function"><u>Functionality of Multiplexer</u></a></li>
@@ -176,21 +181,61 @@
                     Functionality
                 </h1>
                 <p>
-                    I like pretty forms and clean HTML 😄 That's why I created
-                    <strong>nice-forms.css</strong> to help devs who want to hit the
-                    ground running, but don't want to stare at default input fields when
-                    doing so 💩
+                    Now that we know what a multiplexer is, let's undertsand how it works.
                 </p>
-                <strong>Content:</strong>
+                <div class="base_img">
+                    <img src="media/sample.png" alt="MUX" class="intro-image">
+                </div>
+                <p>
+                    Using a 4-to-1 Multiplexer as an example, we can see that it has 4 input lines 
+                    (I<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> , I<sub style="font-size: 0.7em; vertical-align: sub;">1</sub> , I<sub style="font-size: 0.7em; vertical-align: sub;">2</sub> , I<sub style="font-size: 0.7em; vertical-align: sub;">3</sub>), 
+                    2 select lines (S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> , S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>), and 1 output line (Y).
+                </p>
+                <p>
+                    The output Y is determined by the combination of the select lines S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> and S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>.
+                </p>
                 <ul>
-                    <li>It provides a sensible input styling 'reset'</li>
-                    <li>Get nice looking forms with zero effort</li>
-                    <li>Easily customizable with css-variables</li>
-                    <li>
-                    Perfect for rapid prototyping or tweak it and make it your own.
-                    </li>
-                    <li>No hacks or unnecessary elements, pure semantics</li>
+                    <li>If S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> = 00, Y = I<sub style="font-size: 0.7em; vertical-align: sub;">0</sub></li>
+                    <li>If S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> = 01, Y = I<sub style="font-size: 0.7em; vertical-align: sub;">1</sub></li>
+                    <li>If S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> = 10, Y = I<sub style="font-size: 0.7em; vertical-align: sub;">2</sub></li>
+                    <li>If S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub>S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub> = 11, Y = I<sub style="font-size: 0.7em; vertical-align: sub;">3</sub></li>
                 </ul>
+                <br>
+                <p>
+                    Usually, we use a truth table to visualize the functionality of a multiplexer, as shown below:
+                </p>
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>S<sub>1</sub></th>
+                            <th>S<sub>0</sub></th>
+                            <th>Y</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>I<sub>0</sub></td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>I<sub>1</sub></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>I<sub>2</sub></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>I<sub>3</sub></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
             </section>
 
             <section>
