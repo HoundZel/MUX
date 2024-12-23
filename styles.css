@@ -335,6 +335,7 @@ body{
 /* form/ blog section */
 .base_img{
     display: flex;
+    flex-direction: column;
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
@@ -354,14 +355,33 @@ body{
     justify-content: center;
 }
 
+/* functionality section */
 .truthtable {
-    border: 1px solid;
-    width: 100%; /* Ensure the table takes the full width of its container */
+    border: 1px solid black; 
+    width: min(70%, 300px); 
     aspect-ratio: 1 / 1; /* Maintain a 1:1 aspect ratio */
     table-layout: fixed; /* Ensure the table cells are evenly distributed */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .truthtable th, .truthtable td {
     text-align: center; /* Center align text in table cells */
     padding: 10px; /* Add padding to table cells */
+    border: 1px solid black; 
 }
+
+.truthtable th{
+    background-color: #FDE899;
+}
+
+.truthtable td{
+    background-color: rgb(241, 241, 241);
+}
+
+dd{
+    font-size: 0.8rem;
+}
+
+/* practice question section */

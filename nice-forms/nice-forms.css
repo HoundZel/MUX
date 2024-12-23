@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
- a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+ a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, del, details, dfn, div, dl, dt, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
 	 margin: 0;
 	 padding: 0;
 	 border: 0;
@@ -13,8 +13,11 @@
  body {
 	 line-height: 1;
 }
- ol, ul {
+ol, ul {
 	 list-style: none;
+}
+ul.a{
+	list-style-type: circle;
 }
  blockquote, q {
 	 quotes: none;
@@ -50,9 +53,9 @@
 	 --nf-valid-input-color: inherit;
 	 --nf-invalid-input-border-bottom-color: red;
 	 --nf-valid-input-border-bottom-color: green;
-	 --nf-label-font-size: var(--nf-small-font-size);
+	 --nf-label-font-size: calc(var(--nf-small-font-size)*1.7);
 	 --nf-label-color: #374151;
-	 --nf-label-font-weight: 500;
+	 --nf-label-font-weight: 300;
 	 --nf-slider-track-background: #dfdfdf;
 	 --nf-slider-track-height: 0.25rem;
 	 --nf-slider-thumb-size: calc(var(--nf-slider-track-height)*4);
@@ -61,7 +64,7 @@
 	 --nf-slider-thumb-border-focus-width: 1px;
 	 --nf-slider-thumb-border-color: #fff;
 	 --nf-slider-thumb-background: var(--nf-input-focus-border-color);
-	 display: block;
+	 display: flex;
 	 margin-top: calc(var(--nf-input-size)*1.5);
 	 line-height: 1;
 	 white-space: nowrap;
@@ -72,11 +75,12 @@
 }
  .nice-form-group > label {
 	 font-weight: var(--nf-label-font-weight);
-	 display: block;
+	 display: inline-block;
+	 margin-right: 10px;
 	 color: var(--nf-label-color);
 	 font-size: var(--nf-label-font-size);
 	 font-family: var(--nf-label-font-family);
-	 margin-bottom: calc(var(--nf-input-size)/2);
+	 /* margin-bottom: calc(var(--nf-input-size)/2); */
 	 white-space: normal;
 }
  .nice-form-group > label + small {
@@ -115,9 +119,9 @@
 	 border: var(--nf-input-border-width) var(--nf-input-border-style) var(--nf-input-border-color);
 	 border-bottom: var(--nf-input-border-bottom-width) var(--nf-input-border-style) var(--nf-input-border-color);
 	 color: var(--nf-input-color);
-	 width: 100%;
+	 width: 30%;
 	 padding: calc(var(--nf-input-size)*0.75);
-	 height: calc(var(--nf-input-size)*2.75);
+	 height: calc(var(--nf-input-size)*2);
 	 line-height: normal;
 	 -webkit-appearance: none;
 	 -moz-appearance: none;

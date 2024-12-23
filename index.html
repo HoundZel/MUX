@@ -120,6 +120,7 @@
             </h1>
             <div class="base_img">
                 <img src="media/irl.png" alt="irlMUX" class="intro-image">
+                <caption><u>A CD4051BE analog multiplexer</u></caption>
             </div>
             <br>
             <p>
@@ -152,14 +153,33 @@
                 <li><strong>Digital Circuits:</strong> They are used in digital circuits for implementing logic functions and reducing the number of logic gates required.</li>
             </ul>
             <br>
-            <strong><u>Webpage Content:</u></strong>
+            <strong><u>Website Content:</u></strong>
             <ul>
-                <li><a href="#function"><u>Functionality of Multiplexer</u></a></li>
-                <li><a href="#exercise"><u>Practice Questions</u></a></li>
-                <li><a href="#resource"><u>Additional Resources</u></a></li>
-                <li><a href="#about"><u>About</u></a></li>
-                <li><a href="showcase/showcase.html"><u>Interactive Multiplexer Showcase</u></a></li>
-                <li><a href="practise/practise.html"><u>Quiz Questions</u></a></li>
+                <li><dl>
+                    <dt><strong>Landing Page</strong></dt>
+                        <dd>&nbsp&nbsp The current page. The landing page is also the homepage of the website, hosting <em>theoretical
+                            informtaion about multiplexers</em> and the main purpose of the project. You can navigate the page using the <em>sidebar</em> &lt&lt 
+                            or click on the <em>links below</em> to jump to a specific section.
+                        </dd>
+                </dl></li>
+                <ul class="a">
+                    <li><a href="#function"><u>Functionality of Multiplexer</u></a></li>
+                    <li><a href="#exercise"><u>Practice Questions</u></a></li>
+                    <li><a href="#resource"><u>Additional Resources</u></a></li>
+                    <li><a href="#about"><u>About</u></a></li>
+                </ul>
+                <br>
+                <li><dl>
+                    <dt><strong>Interactive Pages</strong></dt>
+                        <dd>&nbsp&nbsp The website also features two other features which you can be redirected to via the navigation bar above ^ .
+                            The <em>Showcase</em> page is a interactive visual representation of the multiplexer's functionality, while the <em>Quiz</em> page is a 
+                            collection of questions to test your knowledge on the topic.
+                         </dd>
+                </dl></li>
+                <ul class="a">
+                    <li><a href="showcase/showcase.html"><u>Multiplexer Showcase</u></a></li>
+                    <li><a href="practise/practise.html"><u>Quiz Questions</u></a></li>
+                </ul>
             </ul>
             <br>
             <p>
@@ -185,6 +205,7 @@
                 </p>
                 <div class="base_img">
                     <img src="media/sample.png" alt="MUX" class="intro-image">
+                    <caption><u>4-to-1 Multiplexer</u></caption>
                 </div>
                 <p>
                     Using a 4-to-1 Multiplexer as an example, we can see that it has 4 input lines 
@@ -202,13 +223,14 @@
                 </ul>
                 <br>
                 <p>
-                    Usually, we use a truth table to visualize the functionality of a multiplexer, as shown below:
+                    Conventionally, we use a truth table to visualize the functionality of a multiplexer, as shown below:
                 </p>
                 <table class="truthtable">
+                    <caption><strong>Truth Table</strong></caption>
                     <thead>
                         <tr>
-                            <th>S<sub>1</sub></th>
-                            <th>S<sub>0</sub></th>
+                            <th>S<sub style="font-size: 0.7em; vertical-align: sub;">1</sub></th>
+                            <th>S<sub style="font-size: 0.7em; vertical-align: sub;">0</sub></th>
                             <th>Y</th>
                         </tr>
                     </thead>
@@ -216,22 +238,22 @@
                         <tr>
                             <td>0</td>
                             <td>0</td>
-                            <td>I<sub>0</sub></td>
+                            <td>I<sub style="font-size: 0.7em; vertical-align: sub;">0</sub></td>
                         </tr>
                         <tr>
                             <td>0</td>
                             <td>1</td>
-                            <td>I<sub>1</sub></td>
+                            <td>I<sub style="font-size: 0.7em; vertical-align: sub;">1</sub></td>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>0</td>
-                            <td>I<sub>2</sub></td>
+                            <td>I<sub style="font-size: 0.7em; vertical-align: sub;">2</sub></td>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>1</td>
-                            <td>I<sub>3</sub></td>
+                            <td>I<sub style="font-size: 0.7em; vertical-align: sub;">3</sub></td>
                         </tr>
                     </tbody>
                 </table>
@@ -248,21 +270,51 @@
                     Practice Questions
                 </h1>
                 <p>
-                    I like pretty forms and clean HTML 😄 That's why I created
-                    <strong>nice-forms.css</strong> to help devs who want to hit the
-                    ground running, but don't want to stare at default input fields when
-                    doing so 💩
+                    <strong style="display: block">Question 1</strong>
+                    Express the logic function F(a,b,c) of Figure 4 in the <em>maxterm</em> form, where the module is a 74153 <em>4-to-1 MUX</em>.<br>
+                    (Seperate each term with a comma <code>,</code>)
                 </p>
-                <strong>Content:</strong>
-                <ul>
-                    <li>It provides a sensible input styling 'reset'</li>
-                    <li>Get nice looking forms with zero effort</li>
-                    <li>Easily customizable with css-variables</li>
-                    <li>
-                    Perfect for rapid prototyping or tweak it and make it your own.
-                    </li>
-                    <li>No hacks or unnecessary elements, pure semantics</li>
-                </ul>
+                <div class="base_img">
+                    <img src="media/Question1.png" alt="question1" class="intro-image">
+                </div>
+                <div class="nice-form-group">
+                    <label>F(a,b,c) = ΠM( </label>
+                    <input type="text" placeholder="0,1,2,3,4,5,6,7" value="" />
+                    <label>&nbsp; )</label>
+                </div>
+                <details>
+                    <summary>
+                    <div class="toggle-code">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        Toggle Solution for Question 1
+                    </div>
+                    </summary>
+                    <script src="https://gist.github.com/nielsVoogt/5c490e16bc1b63bba29d4ee76477f94d.js"></script>
+                </details>
+                <br>
+                <br>
+
+
+                <p>
+                    <strong style="display: block">Question 2</strong>
+                    Find the <em>minterm</em> for the following MUX configuration. <br>
+                    (Seperate each term with a comma <code>,</code>)
+                </p>
+                <details>
+                    <summary>
+                    <div class="toggle-code">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                        Toggle Solution
+                    </div>
+                    </summary>
+                    <script src="https://gist.github.com/nielsVoogt/5c490e16bc1b63bba29d4ee76477f94d.js"></script>
+                </details>
             </section>
 
             <section>
@@ -275,21 +327,34 @@
                     Additional Resources
                 </h1>
                 <p>
-                    I like pretty forms and clean HTML 😄 That's why I created
-                    <strong>nice-forms.css</strong> to help devs who want to hit the
-                    ground running, but don't want to stare at default input fields when
-                    doing so 💩
+                    Reading materials are non-exhaustive, but the following are
+                    materials that helped me study and recap on the Digital Electronics content. 
+                    Feel free to browse through them to get a better understanding of the topics.
                 </p>
-                <strong>Content:</strong>
+                <strong>Past Year Papers:</strong>
                 <ul>
-                    <li>It provides a sensible input styling 'reset'</li>
-                    <li>Get nice looking forms with zero effort</li>
-                    <li>Easily customizable with css-variables</li>
-                    <li>
-                    Perfect for rapid prototyping or tweak it and make it your own.
+                    <li><a href="https://entuedu-my.sharepoint.com/personal/eeeclub-sdd_e_ntu_edu_sg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Feeeclub%2Dsdd%5Fe%5Fntu%5Fedu%5Fsg%2FDocuments%2FPYP%20Solutions%2FEEE%20PYP%20Complete%20Solutions%2FIE2104%2DDigital%20Electronics&sortField=LinkFilename&isAscending=true&ga=1"><u>OneDrive</u></a><br>
+                        &nbsp&nbsp Credits to NTU EEE Club
                     </li>
-                    <li>No hacks or unnecessary elements, pure semantics</li>
                 </ul>
+                <br>
+                <!-- https://entuedu-my.sharepoint.com/personal/eeeclub-sdd_e_ntu_edu_sg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Feeeclub%2Dsdd%5Fe%5Fntu%5Fedu%5Fsg%2FDocuments%2FPYP%20Solutions%2FEEE%20PYP%20Complete%20Solutions%2FIE2104%2DDigital%20Electronics&sortField=LinkFilename&isAscending=true&ga=1 -->
+                <strong>Cheat Sheet:</strong>
+                <ul>
+                    <li><a href="https://github.com/jovyntls/cheatsheets/blob/master/CS2100/cs2100-finals-summary.pdf"><u>Github Repository</u></a><br>
+                        &nbsp&nbsp Credits to <a href="https://github.com/jovyntls"><u>jovyntls</u></a>
+                    </li>
+                </ul>
+                <br>
+                <strong>Textbooks:</strong>
+                <ul>
+                    <li>D. P. Larsen, “Picking the Right Dose: The Challenges of Applying Spaced Testing to
+                        Education,” National Library of Medicine, 2014.</li>
+                    <li>W. J. F, Digital Design: Principles and Practices, 4th Edition, Pearson Prentice-Hall,
+                        2007.</li>
+                    <li>R. C. H., Introduction to logic design, 3rd Edition, Pearson Prentice Hall, 2014. </li>
+                </ul>
+                <br>
             </section>
 
             <section>
@@ -301,6 +366,14 @@
                     About
                 </h1>
                 <p>
+                    Hi, I'm Qi Chuan, a Final Year Electrical and Electronic Engineering student 
+                    at Nanyang Technological University (NTU). This project was created as part of 
+                    my final year project, and I hope it can be a useful resource for students 
+                    studying Digital Electronics.
+                </p>
+
+                <p>
+                    The link below leads to the github repository for this webpage.
                     If you encounter a bug on any device or have suggestions for
                     improvement, don't hesitate to open a bug report or pull request.
                 </p>
@@ -858,7 +931,7 @@
             <script src="https://gist.github.com/nielsVoogt/63daf967a17776d00f5923048cf28daf.js"></script>
             </section>
 
-            <footer style="color:whitesmoke;font-family: 'Montserrat', sans-serif;">Poon Qi Chuan - 2025</footer>
+            <footer style="color:whitesmoke;font-family: 'Montserrat', sans-serif;">&lt Poon Qi Chuan - 2025 &gt</footer>
         </main>
     </div>
 
