@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     var i = 0;
-    var txt = 'Your one stop site to know everything about multiplexers.'; /* The text */
+    var txt = 'Your one stop site to learn everything about multiplexers.'; /* The text */
     var speed = 50; /* The speed/duration of the effect in milliseconds */
 
     function typeWriter() {
@@ -84,4 +84,94 @@ document.addEventListener('DOMContentLoaded', function() {
 
     typeWriter();
   }, 1000); // 1 second delay
+});
+
+//practice question 1 verification
+document.addEventListener('DOMContentLoaded', function() {
+    const answerInput = document.querySelector('#answer_one');
+    const submitButton = document.querySelector('.submit_one');
+    const correctAnswer = [0, 1, 5, 7];
+    const correctAnswerSet = new Set(correctAnswer);
+
+    submitButton.addEventListener('click', function() {
+        const userInput = answerInput.value.trim();
+        
+        // Check if the input is valid
+        if (!/^[0-9,\s]*$/.test(userInput)) {
+            alert('Invalid answer');
+            return;
+        }
+
+        // Convert the input string to an array of numbers
+        const userArray = userInput.split(',').map(num => num.trim()).filter(num => num !== '').map(Number);
+
+        // Check for duplicates
+        const uniqueArray = [...new Set(userArray)];
+        if (uniqueArray.length !== userArray.length) {
+            alert('Duplicate terms');
+            return;
+        }
+
+        // Verify the answer
+        const userAnswerSet = new Set(userArray);
+        let isCorrect = true;
+
+        for (let num of userArray) {
+            if (!correctAnswerSet.has(num)) {
+                isCorrect = false;
+                break;
+            }
+        }
+
+        if (isCorrect && userAnswerSet.size === correctAnswerSet.size) {
+            alert('Correct answer');
+        } else {
+            alert('Wrong answer, Try again.');
+        }
+    });
+});
+
+//practice question 2 verification
+document.addEventListener('DOMContentLoaded', function() {
+    const answerInput = document.querySelector('#answer_two');
+    const submitButton = document.querySelector('.submit_two');
+    const correctAnswer = [5, 7, 12, 13, 15];
+    const correctAnswerSet = new Set(correctAnswer);
+
+    submitButton.addEventListener('click', function() {
+        const userInput = answerInput.value.trim();
+        
+        // Check if the input is valid
+        if (!/^[0-9,\s]*$/.test(userInput)) {
+            alert('Invalid answer');
+            return;
+        }
+
+        // Convert the input string to an array of numbers
+        const userArray = userInput.split(',').map(num => num.trim()).filter(num => num !== '').map(Number);
+
+        // Check for duplicates
+        const uniqueArray = [...new Set(userArray)];
+        if (uniqueArray.length !== userArray.length) {
+            alert('Duplicate terms');
+            return;
+        }
+
+        // Verify the answer
+        const userAnswerSet = new Set(userArray);
+        let isCorrect = true;
+
+        for (let num of userArray) {
+            if (!correctAnswerSet.has(num)) {
+                isCorrect = false;
+                break;
+            }
+        }
+
+        if (isCorrect && userAnswerSet.size === correctAnswerSet.size) {
+            alert('Correct answer');
+        } else {
+            alert('Wrong answer, Try again.');
+        }
+    });
 });

@@ -53,7 +53,7 @@ ul.a{
 	 --nf-valid-input-color: inherit;
 	 --nf-invalid-input-border-bottom-color: red;
 	 --nf-valid-input-border-bottom-color: green;
-	 --nf-label-font-size: calc(var(--nf-small-font-size)*1.7);
+	 --nf-label-font-size: calc(var(--nf-small-font-size)*1.5);
 	 --nf-label-color: #374151;
 	 --nf-label-font-weight: 300;
 	 --nf-slider-track-background: #dfdfdf;
@@ -121,7 +121,7 @@ ul.a{
 	 color: var(--nf-input-color);
 	 width: 30%;
 	 padding: calc(var(--nf-input-size)*0.75);
-	 height: calc(var(--nf-input-size)*2);
+	 height: calc(var(--nf-input-size)*1);
 	 line-height: normal;
 	 -webkit-appearance: none;
 	 -moz-appearance: none;

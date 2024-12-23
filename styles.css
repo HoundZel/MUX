@@ -385,3 +385,47 @@ dd{
 }
 
 /* practice question section */
+
+.submit_btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    background: #3b4ce2;
+    top: 1em;
+    right: 1em;
+    color: #fff;
+    font-weight: 500;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.submit_btn:hover {
+    background: #3341c4;
+}
+
+.solutionTable{
+    border: 1px solid black; 
+    color: black;
+    width: min(100%, 450px); 
+    aspect-ratio: 1 / 1; /* Maintain a 1:1 aspect ratio */
+    table-layout: fixed; /* Ensure the table cells are evenly distributed */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.solutionTable th, .solutionTable td {
+    text-align: center; /* Center align text in table cells */
+    padding: 10px; /* Add padding to table cells */
+    border: 1px solid black; 
+}
+
+.solutionTable th{
+    background-color: #FDE899;
+}
+
+.solutionTable td{
+    background-color: rgb(255, 255, 255);
+}
