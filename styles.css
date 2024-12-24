@@ -301,6 +301,9 @@ body{
         width: 90vw;
         height: auto;
     }
+    .arrowdown{
+        padding-bottom: 12.5%;
+    }
 }
 
 /* PC version */

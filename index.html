@@ -24,7 +24,7 @@
         <div class="introText">
             <h3 id="subtitle" ></h3>
         </div>
-        <a href="#nav_bar" class="arrowdown">
+        <a href="#scroll" class="arrowdown">
             <svg viewBox="0 0 24 24" width="100" height="100" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
                 <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
@@ -37,6 +37,9 @@
 
             <nav class="nav">
                 <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="#introduction" class="nav_link">Home</a>
+                    </li>
                     <!-- <li class="nav_item">
                         <a href="old_showcase/showcase.html" class="nav_link">Beta</a>
                     </li> -->
@@ -56,6 +59,8 @@
             </div>
         </div>
     </div>
+
+    <div id="scroll"></div>
 
     <!-- whole ass form -->
     <div class="demo-page">
@@ -201,7 +206,7 @@
                     Functionality
                 </h1>
                 <p>
-                    Now that we know what a multiplexer is, let's undertsand how it works.
+                    Now that we know what a multiplexer is, let's understand how it works.
                 </p>
                 <div class="base_img">
                     <img src="media/sample.png" alt="MUX" class="intro-image">
@@ -279,7 +284,7 @@
                 </div>
                 <div class="nice-form-group">
                     <label>F(a,b,c) = ΠM( </label>
-                    <input type="text" id="answer_one" placeholder="maxterms eg.(0,1,2)" value="" />
+                    <input type="text" id="answer_one" placeholder="eg.0,1,2" value="" />
                     <label>&nbsp; )</label>
                 </div>
                 <br>
@@ -402,7 +407,7 @@
                 </p>
                 <div class="nice-form-group">
                     <label>z(a,b,c,d) = Σm( </label>
-                    <input type="text" id="answer_two" placeholder="minterms eg.(0,1,2)" value="" />
+                    <input type="text" id="answer_two" placeholder="eg.0,1,2" value="" />
                     <label>&nbsp; )</label>
                 </div>
                 <br>
@@ -429,7 +434,7 @@
                                 <th>b</th>
                                 <th>c</th>
                                 <th>d</th>
-                                <th>z(a,b,c,d)</th>
+                                <th>z</th>
                             </tr>
                         </thead>
                         <tbody>
