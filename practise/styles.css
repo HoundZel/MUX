@@ -48,6 +48,11 @@ body {
     flex-direction: column;
 }
 
+#circuit{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
 .option {
     background-color: #007bff;
     color: white;

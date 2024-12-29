@@ -199,6 +199,10 @@ function qn_generator() {
     // Set the question
     document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration: ${JSON.stringify(inputs)}`;
 
+    // Draw the multiplexer
+    const circuitDiv = document.getElementById('circuit');
+    drawMultiplexer(circuitDiv, inputs);
+
     // Generate 3 other wrong unique answers of the same length
     let wrongAnswers = new Set();
     while (wrongAnswers.size < 3) {
@@ -225,6 +229,148 @@ function qn_generator() {
         optionButtons[index].innerText = JSON.stringify(option);
         optionButtons[index].onclick = () => checkAnswer(optionButtons[index], option, correctAnswer);
     });
+}
+
+// Function to draw the multiplexer
+function drawMultiplexer(circuitDiv, inputs) {  
+    
+    // Count the keys that start with "I" and "S"
+    let countI = 0;
+    let countS = 0;
+
+    Object.keys(inputs).forEach(key => {
+        if (key.startsWith("I")) {
+            countI++;
+        } else if (key.startsWith("S")) {
+            countS++;
+        }
+    });
+
+    console.log(`Number of keys starting with "I": ${countI}`);
+    console.log(`Number of keys starting with "S": ${countS}`);
+    
+    // Clear any existing SVG
+    circuitDiv.innerHTML = '';
+
+    // Create the SVG element
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    svg.style.width = "100%";
+    svg.style.height = "100%";
+
+    // Draw the multiplexer (example)
+    const rect = document.createElementNS(svgNS, "rect");
+    rect.setAttribute("x", "40");
+    rect.setAttribute("y", "5");
+    rect.setAttribute("width", "40");
+    rect.setAttribute("height", "80");
+    rect.setAttribute("fill", "lightgray");
+    rect.setAttribute("stroke", "black");
+    svg.appendChild(rect);
+
+    // Draw lines based on countI
+    for (let i = 0; i < countI; i++) {
+        const yValue = (80 / countI) * i + 10;
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", "40");
+        line.setAttribute("y1", yValue);
+        line.setAttribute("x2", "35");
+        line.setAttribute("y2", yValue);
+        line.setAttribute("stroke", "black");
+        svg.appendChild(line);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", "46");
+        text.setAttribute("y", yValue+2);
+        text.setAttribute("text-anchor", "end");
+        text.setAttribute("font-size", "4");
+        text.textContent = `I${i}`;
+        svg.appendChild(text);
+
+        if (!inputs[`I${i}`].includes(" ")) {
+            const line2 = document.createElementNS(svgNS, "line");
+            line2.setAttribute("x1", "35");
+            line2.setAttribute("y1", yValue);
+            line2.setAttribute("x2", "25");
+            line2.setAttribute("y2", yValue);
+            line2.setAttribute("stroke", "black");
+            svg.appendChild(line2);
+
+            const text2 = document.createElementNS(svgNS, "text");
+            text2.setAttribute("x", "20");
+            text2.setAttribute("y", yValue+2);
+            text2.setAttribute("text-anchor", "end");
+            text2.setAttribute("font-size", "5");
+            text2.textContent = inputs[`I${i}`];
+            svg.appendChild(text2);
+
+        } else {
+            const [val1, gate, val2] = inputs[`I${i}`].split(" ");
+            if (gate === "AND") {
+                const rect2 = document.createElementNS(svgNS, "rect");
+                rect2.setAttribute("x", 27.5);
+                rect2.setAttribute("y", yValue-2.5);
+                rect2.setAttribute("width", "5");
+                rect2.setAttribute("height", "5");
+                rect2.setAttribute("fill", "none");
+                rect2.setAttribute("stroke", "black");
+                rect2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(rect2);}
+            // } else if (gate === "OR") {
+            //     drawORGate(svg, 25, yValue - 5);
+            // } else if (gate === "NOT") {
+            //     drawNOTGate(svg, 25, yValue - 5);
+            // }
+        }
+    }
+
+    const line2 = document.createElementNS(svgNS, "line");
+    line2.setAttribute("x1", "80");
+    line2.setAttribute("y1", "45");
+    line2.setAttribute("x2", "85");
+    line2.setAttribute("y2", "45");
+    line2.setAttribute("stroke", "black");
+    svg.appendChild(line2);
+
+    for (let i = 0; i < countS; i++) {
+        const xValue = (33 / countS) * i + 52;
+        const line3 = document.createElementNS(svgNS, "line");
+        line3.setAttribute("x1", xValue);
+        line3.setAttribute("y1", "85");
+        line3.setAttribute("x2", xValue);
+        line3.setAttribute("y2", "90");
+        line3.setAttribute("stroke", "black");
+        svg.appendChild(line3);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", xValue);
+        text.setAttribute("y", "83");
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("font-size", "4");
+        text.textContent = `S${i}`;
+        svg.appendChild(text);
+
+        const text2 = document.createElementNS(svgNS, "text");
+        text2.setAttribute("x", xValue);
+        text2.setAttribute("y", "95");
+        text2.setAttribute("text-anchor", "middle");
+        text2.setAttribute("font-size", "5");
+        text2.textContent = inputs[`S${i}`];
+        svg.appendChild(text2);
+    }
+
+    const text = document.createElementNS(svgNS, "text");
+    text.setAttribute("x", "88");
+    text.setAttribute("y", "46.5");
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "4");
+    text.textContent = "Y";
+    svg.appendChild(text);
+
+    // Append the SVG to the circuit div
+    circuitDiv.appendChild(svg);
 }
 
 // Function to check if the selected answer is correct
@@ -268,8 +414,6 @@ document.getElementById('next-btn').addEventListener('click', () => {
 
     qn_generator();
 });
-
-
 
 // other functions
 // DOMcontentloaded event listener for animated background 
