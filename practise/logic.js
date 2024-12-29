@@ -197,7 +197,8 @@ function qn_generator() {
     }
 
     // Set the question
-    document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration: ${JSON.stringify(inputs)}`;
+    // document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration: ${JSON.stringify(inputs)}`;
+    document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration.`;
 
     // Draw the multiplexer
     const circuitDiv = document.getElementById('circuit');
@@ -307,22 +308,252 @@ function drawMultiplexer(circuitDiv, inputs) {
             svg.appendChild(text2);
 
         } else {
+            // draw logic gates
             const [val1, gate, val2] = inputs[`I${i}`].split(" ");
+
+            const texttop = document.createElementNS(svgNS, "text");
+            texttop.setAttribute("x", "20");
+            texttop.setAttribute("y", yValue-1.5);
+            texttop.setAttribute("text-anchor", "end");
+            texttop.setAttribute("font-size", "4");
+            texttop.textContent = val1;
+            svg.appendChild(texttop);
+
+            const textbot = document.createElementNS(svgNS, "text");
+            textbot.setAttribute("x", "20");
+            textbot.setAttribute("y", yValue+4);
+            textbot.setAttribute("text-anchor", "end");
+            textbot.setAttribute("font-size", "4");
+            textbot.textContent = val2;
+            svg.appendChild(textbot);
+
+            const topline = document.createElementNS(svgNS, "line");
+            topline.setAttribute("x1", 27.5);
+            topline.setAttribute("y1", yValue-1.25);
+            topline.setAttribute("x2", 22);
+            topline.setAttribute("y2", yValue-1.25);
+            topline.setAttribute("stroke", "black");
+            topline.setAttribute("stroke-width", "0.5");
+            svg.appendChild(topline);
+
+            const botline = document.createElementNS(svgNS, "line");
+            botline.setAttribute("x1", 27.5);
+            botline.setAttribute("y1", yValue+1.25);
+            botline.setAttribute("x2", 22);
+            botline.setAttribute("y2", yValue+1.25);
+            botline.setAttribute("stroke", "black");
+            botline.setAttribute("stroke-width", "0.5");
+            svg.appendChild(botline);
+
             if (gate === "AND") {
+                const circle = document.createElementNS(svgNS, "circle");
+                circle.setAttribute("cx", 32.5);
+                circle.setAttribute("cy", yValue);
+                circle.setAttribute("r", "2.5");
+                circle.setAttribute("fill", "white");
+                circle.setAttribute("stroke", "black");
+                circle.setAttribute("stroke-width", "0.5");
+                svg.appendChild(circle);
+
                 const rect2 = document.createElementNS(svgNS, "rect");
                 rect2.setAttribute("x", 27.5);
                 rect2.setAttribute("y", yValue-2.5);
                 rect2.setAttribute("width", "5");
                 rect2.setAttribute("height", "5");
-                rect2.setAttribute("fill", "none");
-                rect2.setAttribute("stroke", "black");
-                rect2.setAttribute("stroke-width", "0.5");
-                svg.appendChild(rect2);}
-            // } else if (gate === "OR") {
-            //     drawORGate(svg, 25, yValue - 5);
-            // } else if (gate === "NOT") {
-            //     drawNOTGate(svg, 25, yValue - 5);
-            // }
+                rect2.setAttribute("fill", "white");
+                svg.appendChild(rect2);
+
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", 27.5);
+                line.setAttribute("y1", yValue-2.5);
+                line.setAttribute("x2", 27.5);
+                line.setAttribute("y2", yValue+2.5);
+                line.setAttribute("stroke", "black");
+                line.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line);
+
+                const line2 = document.createElementNS(svgNS, "line");
+                line2.setAttribute("x1", 27.5);
+                line2.setAttribute("y1", yValue-2.5);
+                line2.setAttribute("x2", 32.5);
+                line2.setAttribute("y2", yValue-2.5);
+                line2.setAttribute("stroke", "black");
+                line2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line2);
+
+                const line3 = document.createElementNS(svgNS, "line");
+                line3.setAttribute("x1", 27.5);
+                line3.setAttribute("y1", yValue+2.5);
+                line3.setAttribute("x2", 32.5);
+                line3.setAttribute("y2", yValue+2.5);
+                line3.setAttribute("stroke", "black");
+                line3.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line3);
+            } else if (gate === "NAND") {
+                const circle = document.createElementNS(svgNS, "circle");
+                circle.setAttribute("cx", 30.5);
+                circle.setAttribute("cy", yValue);
+                circle.setAttribute("r", "2.5");
+                circle.setAttribute("fill", "white");
+                circle.setAttribute("stroke", "black");
+                circle.setAttribute("stroke-width", "0.5");
+                svg.appendChild(circle);
+
+                const circle2 = document.createElementNS(svgNS, "circle");
+                circle2.setAttribute("cx", 34);
+                circle2.setAttribute("cy", yValue);
+                circle2.setAttribute("r", "1");
+                circle2.setAttribute("fill", "white");
+                circle2.setAttribute("stroke", "black");
+                circle2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(circle2);
+
+                const rect2 = document.createElementNS(svgNS, "rect");
+                rect2.setAttribute("x", 27.5);
+                rect2.setAttribute("y", yValue-2.5);
+                rect2.setAttribute("width", "3");
+                rect2.setAttribute("height", "5");
+                rect2.setAttribute("fill", "white");
+                svg.appendChild(rect2);
+
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute("x1", 27.5);
+                line.setAttribute("y1", yValue-2.5);
+                line.setAttribute("x2", 27.5);
+                line.setAttribute("y2", yValue+2.5);
+                line.setAttribute("stroke", "black");
+                line.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line);
+
+                const line2 = document.createElementNS(svgNS, "line");
+                line2.setAttribute("x1", 27.5);
+                line2.setAttribute("y1", yValue-2.5);
+                line2.setAttribute("x2", 30.5);
+                line2.setAttribute("y2", yValue-2.5);
+                line2.setAttribute("stroke", "black");
+                line2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line2);
+
+                const line3 = document.createElementNS(svgNS, "line");
+                line3.setAttribute("x1", 27.5);
+                line3.setAttribute("y1", yValue+2.5);
+                line3.setAttribute("x2", 30.5);
+                line3.setAttribute("y2", yValue+2.5);
+                line3.setAttribute("stroke", "black");
+                line3.setAttribute("stroke-width", "0.5");
+                svg.appendChild(line3);
+            } else if (gate === "OR") {
+                // Create the right arc
+                const rightArc = document.createElementNS(svgNS, "path");
+                const rightArcPath = `M 27.5 ${yValue+2.5} Q 32.5 ${yValue+2.5} 35 ${yValue} Q 32.5 ${yValue-2.5} 27.5 ${yValue-2.5}`;
+                rightArc.setAttribute("d", rightArcPath);
+                rightArc.setAttribute("stroke", "black");
+                rightArc.setAttribute("fill", "none");
+                rightArc.setAttribute("stroke-width", "0.5");
+                svg.appendChild(rightArc);
+
+                // Create the connecting path
+                const connectingPath = document.createElementNS(svgNS, "path");
+                const connectingPathPath = `M 27.5 ${yValue+2.5} Q 30 ${yValue} 27.5 ${yValue-2.5}`;
+                connectingPath.setAttribute("d", connectingPathPath);
+                connectingPath.setAttribute("stroke", "black");
+                connectingPath.setAttribute("fill", "none");
+                connectingPath.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath);       
+            // ${yValue}
+            } else if (gate === "XOR") {
+                // Create the right arc
+                const rightArc = document.createElementNS(svgNS, "path");
+                const rightArcPath = `M 28.5 ${yValue+2.5} Q 32.8337 ${yValue+2.5} 35 ${yValue} Q 32.8337 ${yValue-2.5} 28.5 ${yValue-2.5}`;
+                rightArc.setAttribute("d", rightArcPath);
+                rightArc.setAttribute("stroke", "black");
+                rightArc.setAttribute("fill", "none");
+                rightArc.setAttribute("stroke-width", "0.5");
+                svg.appendChild(rightArc);
+
+                // Create the connecting path
+                const connectingPath = document.createElementNS(svgNS, "path");
+                const connectingPathPath = `M 27.5 ${yValue+2.5} Q 29.67 ${yValue} 27.5 ${yValue-2.5}`;
+                connectingPath.setAttribute("d", connectingPathPath);
+                connectingPath.setAttribute("stroke", "black");
+                connectingPath.setAttribute("fill", "none");
+                connectingPath.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath);    
+
+                // Create the connecting path 2
+                const connectingPath2 = document.createElementNS(svgNS, "path");
+                const connectingPathPath2 = `M 28.5 ${yValue+2.5} Q 30.67 ${yValue} 28.5 ${yValue-2.5}`;
+                connectingPath2.setAttribute("d", connectingPathPath2);
+                connectingPath2.setAttribute("stroke", "black");
+                connectingPath2.setAttribute("fill", "none");
+                connectingPath2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath2);    
+            } else if (gate === "NOR") {
+                // Create the right arc
+                const rightArc = document.createElementNS(svgNS, "path");
+                const rightArcPath = `M 27.5 ${yValue+2.5} Q 31.167 ${yValue+2.5} 33 ${yValue} Q 31.167 ${yValue-2.5} 27.5 ${yValue-2.5}`;
+                rightArc.setAttribute("d", rightArcPath);
+                rightArc.setAttribute("stroke", "black");
+                rightArc.setAttribute("fill", "none");
+                rightArc.setAttribute("stroke-width", "0.5");
+                svg.appendChild(rightArc);
+
+                //circleeee
+                const circle2 = document.createElementNS(svgNS, "circle");
+                circle2.setAttribute("cx", 34);
+                circle2.setAttribute("cy", yValue);
+                circle2.setAttribute("r", "1");
+                circle2.setAttribute("fill", "white");
+                circle2.setAttribute("stroke", "black");
+                circle2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(circle2);
+
+                // Create the connecting path
+                const connectingPath = document.createElementNS(svgNS, "path");
+                const connectingPathPath = `M 27.5 ${yValue+2.5} Q 29.3 ${yValue} 27.5 ${yValue-2.5}`;
+                connectingPath.setAttribute("d", connectingPathPath);
+                connectingPath.setAttribute("stroke", "black");
+                connectingPath.setAttribute("fill", "none");
+                connectingPath.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath);
+            } else if (gate === "XNOR") {
+                // Create the right arc
+                const rightArc = document.createElementNS(svgNS, "path");
+                const rightArcPath = `M 28.5 ${yValue+2.5} Q 31.5 ${yValue+2.5} 33 ${yValue} Q 31.5 ${yValue-2.5} 28.5 ${yValue-2.5}`;
+                rightArc.setAttribute("d", rightArcPath);
+                rightArc.setAttribute("stroke", "black");
+                rightArc.setAttribute("fill", "none");
+                rightArc.setAttribute("stroke-width", "0.5");
+                svg.appendChild(rightArc);
+
+                //circleeee
+                const circle2 = document.createElementNS(svgNS, "circle");
+                circle2.setAttribute("cx", 34);
+                circle2.setAttribute("cy", yValue);
+                circle2.setAttribute("r", "1");
+                circle2.setAttribute("fill", "white");
+                circle2.setAttribute("stroke", "black");
+                circle2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(circle2);
+
+                // Create the connecting path
+                const connectingPath = document.createElementNS(svgNS, "path");
+                const connectingPathPath = `M 27.5 ${yValue+2.5} Q 29.67 ${yValue} 27.5 ${yValue-2.5}`;
+                connectingPath.setAttribute("d", connectingPathPath);
+                connectingPath.setAttribute("stroke", "black");
+                connectingPath.setAttribute("fill", "none");
+                connectingPath.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath);    
+
+                // Create the connecting path 2
+                const connectingPath2 = document.createElementNS(svgNS, "path");
+                const connectingPathPath2 = `M 28.5 ${yValue+2.5} Q 30.67 ${yValue} 28.5 ${yValue-2.5}`;
+                connectingPath2.setAttribute("d", connectingPathPath2);
+                connectingPath2.setAttribute("stroke", "black");
+                connectingPath2.setAttribute("fill", "none");
+                connectingPath2.setAttribute("stroke-width", "0.5");
+                svg.appendChild(connectingPath2);    
+            }
         }
     }
 
