@@ -198,7 +198,7 @@ function qn_generator() {
 
     // Set the question
     // document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration: ${JSON.stringify(inputs)}`;
-    document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration.`;
+    document.getElementById('question').innerHTML = `Find the <u>${answerType}</u> for the following MUX configuration.`;
 
     // Draw the multiplexer
     const circuitDiv = document.getElementById('circuit');
