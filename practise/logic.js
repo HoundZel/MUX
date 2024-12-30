@@ -29,6 +29,11 @@ function NOR(x, y) {
 }
 
 function initializeMux() {
+    // Hide the "Solution" button
+    document.getElementById('solution').classList.add('hidden');
+    // Hide the "Next Question" button
+    document.getElementById('next-btn').classList.add('hidden');
+    
     // Initiated multiplexer config
     const num_of_input = [4, 8][Math.floor(Math.random() * 2)];
     const num_of_select = Math.log2(num_of_input);
@@ -213,8 +218,10 @@ function qn_generator() {
             wrongAnswer.add(randomValue);
         }
         wrongAnswer = Array.from(wrongAnswer).sort((a, b) => a - b);
-        if (!correctAnswer.includes(wrongAnswer) && !wrongAnswers.has(wrongAnswer.toString())) {
-            wrongAnswers.add(wrongAnswer.toString());
+        let wrongAnswerString = wrongAnswer.toString();
+        let correctAnswerString = correctAnswer.toString();
+        if (wrongAnswerString !== correctAnswerString && !wrongAnswers.has(wrongAnswerString)) {
+            wrongAnswers.add(wrongAnswerString);
         }
     }
 
@@ -267,7 +274,7 @@ function drawMultiplexer(circuitDiv, inputs) {
     rect.setAttribute("y", "5");
     rect.setAttribute("width", "40");
     rect.setAttribute("height", "80");
-    rect.setAttribute("fill", "lightgray");
+    rect.setAttribute("fill", "#B4E5A2");
     rect.setAttribute("stroke", "black");
     svg.appendChild(rect);
 
@@ -565,8 +572,8 @@ function drawMultiplexer(circuitDiv, inputs) {
     line2.setAttribute("stroke", "black");
     svg.appendChild(line2);
 
-    for (let i = 0; i < countS; i++) {
-        const xValue = (33 / countS) * i + 52;
+    for (let i = countS-1; i >= 0; i--) {
+        const xValue = (33 / countS) * (countS-i) + 39;
         const line3 = document.createElementNS(svgNS, "line");
         line3.setAttribute("x1", xValue);
         line3.setAttribute("y1", "85");
@@ -612,20 +619,27 @@ function checkAnswer(selectedButton, selectedOption, correctAnswer) {
     const optionButtons = document.querySelectorAll('.option');
     optionButtons.forEach(button => {
         if (button.innerText === correctOption) {
-            button.style.backgroundColor = "green";  // Highlight correct option
+            button.style.backgroundColor = "#5ca571";  // Highlight correct option
         }
         button.disabled = true;  // Disable all option buttons
     });
 
     // Highlight the selected option based on whether it's correct or not
     if (selectedButton.innerText === correctOption) {
-        selectedButton.style.backgroundColor = "green";  // Correct answer
+        selectedButton.style.backgroundColor = "#5ca571";  // Correct answer
     } else {
-        selectedButton.style.backgroundColor = "red";  // Incorrect answer
+        selectedButton.style.backgroundColor = "#bf3f5f";  // Incorrect answer
     }
 
+    // Show the "Solution" button
+    document.getElementById('solution').classList.remove('hidden');
     // Show the "Next Question" button
     document.getElementById('next-btn').classList.remove('hidden');
+
+    // Disable the .option divs
+    optionButtons.forEach(button => {
+        button.style.pointerEvents = 'none';  // Disable interaction
+    });
 }
 
 // Call the qn_generator function to generate the first question
@@ -640,8 +654,15 @@ document.getElementById('next-btn').addEventListener('click', () => {
         button.disabled = false;  // Enable button
     });
 
+    // Hide the "Solution" button
+    document.getElementById('solution').classList.add('hidden');
     // Hide the "Next Question" button
     document.getElementById('next-btn').classList.add('hidden');
+
+    // enable the .option divs
+    optionButtons.forEach(button => {
+        button.style.pointerEvents = 'auto';
+    });
 
     qn_generator();
 });

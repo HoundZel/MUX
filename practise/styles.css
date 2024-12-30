@@ -36,6 +36,10 @@ body {
     flex-direction: column;
 }
 
+/* .quiz-container div{
+    border: 1px solid red;
+} */
+
 #question-container {
     margin-bottom: 20px;
 }
@@ -46,39 +50,47 @@ body {
     word-wrap: break-word;
 }
 
-#options-container {
-    display: flex;
-    flex-direction: column;
-}
-
 #circuit{
     aspect-ratio: 1/1;
 }
 
 .option {
-    background-color: #007bff;
+    background-color: #7c746c;
     color: white;
-    border: none;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 20px;
     padding: 10px;
-    margin: 5px;
     cursor: pointer;
-    font-size: 1em;
 }
 
 .option:hover {
-    background-color: #0056b3;
+    background-color: #44443c;
 }
 
 #next-btn {
-    background-color: #28a745;
+    background-color: #77b3ea;
     color: white;
     padding: 10px;
     border: none;
+    border-radius: 20px;
     cursor: pointer;
 }
 
 #next-btn:hover {
-    background-color: #218838;
+    background-color: #3384eb;
+}
+
+#solution {
+    background-color: #cfada9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#solution:hover {
+    background-color: #a18683;
 }
 
 .hidden {
@@ -95,6 +107,16 @@ body {
     #circuit{
         width: 100%;
     }
+
+    #options-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .option{
+        width: 98%;
+        margin: 5px;
+    }
 }
 
 /* PC version */
@@ -108,4 +130,38 @@ body {
         width: 40%;
     }
 
+    #options-container{
+        width: 55%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 40% 40% 20%;
+        gap: 10px; 
+    }
+
+    .option{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        font-size: 1.5vw;
+    }
+
+    #next-btn {
+        padding: 20px;
+        font-size: 1.6vw;
+    }
+    #solution {
+        padding: 20px;
+        font-size: 1.6vw;
+    }
+
+    .row3 {
+        grid-column: span 2; /* Make the row3 span across both columns */
+        display: flex;
+        justify-content: right;
+        align-items: right;
+        gap: 5px; /* Optional: Add some space between the buttons */
+    }
 }

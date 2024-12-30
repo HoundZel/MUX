@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
     var i = 0;
-    var txt = 'Your one stop site to learn everything about multiplexers.'; /* The text */
-    var speed = 50; /* The speed/duration of the effect in milliseconds */
+    var txt = 'Your one-stop site to learn everything about multiplexers.'; /* The text */
+    var speed = 30; /* The speed/duration of the effect in milliseconds */
 
     function typeWriter() {
       if (i < txt.length) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     typeWriter();
-  }, 1000); // 1 second delay
+  }, 300); // 1 second delay
 });
 
 //practice question 1 verification
