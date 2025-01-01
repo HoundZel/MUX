@@ -52,6 +52,7 @@ body {
 
 #circuit{
     aspect-ratio: 1/1;
+    font-family: 'Arial Unicode MS';
 }
 
 .option {
@@ -93,6 +94,16 @@ body {
     background-color: #a18683;
 }
 
+#real-solution{
+    border-top: 1px solid gray;
+}
+
+#solution-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .hidden {
     display: none;
 }
@@ -131,11 +142,12 @@ body {
     }
 
     #options-container{
-        width: 55%;
+        box-sizing: border-box;
+        width: 60%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 40% 40% 20%;
+        grid-template-rows: 5% 35% 35% 15% 10%;
         gap: 10px; 
     }
 
@@ -145,16 +157,19 @@ body {
         justify-content: center;
         height: 100%;
         width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
         font-size: 1.5vw;
     }
 
     #next-btn {
-        padding: 20px;
+        padding: 15px;
         font-size: 1.6vw;
     }
     #solution {
-        padding: 20px;
-        font-size: 1.6vw;
+        padding: 15px;
+        font-size: 1.4vw;
     }
 
     .row3 {
@@ -163,5 +178,9 @@ body {
         justify-content: right;
         align-items: right;
         gap: 5px; /* Optional: Add some space between the buttons */
+    }
+
+    .padder{
+        grid-column: span 2;
     }
 }

@@ -33,6 +33,8 @@ function initializeMux() {
     document.getElementById('solution').classList.add('hidden');
     // Hide the "Next Question" button
     document.getElementById('next-btn').classList.add('hidden');
+    // Hide the "solutions" div
+    document.getElementById('real-solution').classList.add('hidden');
     
     // Initiated multiplexer config
     const num_of_input = [4, 8][Math.floor(Math.random() * 2)];
@@ -53,7 +55,7 @@ function initializeMux() {
         "A": ['a', drawLineAboveLetter('a')],
         "B": ['b', drawLineAboveLetter('b')],
         "C": ['c', drawLineAboveLetter('c')],
-        "binary": ['0', '1']
+        "binary": ['0', '1'],
     };
 
     if (num_of_input === 8) {
@@ -62,13 +64,22 @@ function initializeMux() {
 
     let z_track = JSON.parse(JSON.stringify(z));
     z_track["gate"] = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR'];
+    // allows for up to 2 gates in the mux with 8 inputs
+    if (num_of_input === 8) {
+        if (Math.random() < 0.5) {
+            z_track["gate2"] = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR'];
+        } 
+        if (Math.random() < 0.5){
+            z_track["gate3"] = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR'];
+        }
+    }
 
     for (let i in inputs) {
         if (Object.keys(z_track).length === 0) {
             inputs[i] = z[Object.keys(z)[Math.floor(Math.random() * Object.keys(z).length)]][Math.floor(Math.random() * 2)];
         } else {
             let temp = Object.keys(z_track)[Math.floor(Math.random() * Object.keys(z_track).length)];
-            if (temp === "gate") {
+            if (temp === "gate" || temp === "gate2" || temp === "gate3") {
                 let first_choice = z[Object.keys(z)[Math.floor(Math.random() * Object.keys(z).length)]][Math.floor(Math.random() * 2)];
                 let second_choice = first_choice;
                 while (second_choice === first_choice) {
@@ -179,6 +190,9 @@ function initializeMux() {
         return initializeMux();
     }
 
+    // Draw the table
+    drawtable(inputs, num_of_input);
+
     // Return the generated values
     return { inputs, minterm, maxterm, kmap };
 }
@@ -201,9 +215,17 @@ function qn_generator() {
         return;
     }
 
+    // Determine the number of unknowns based on the length of the kmap
+    let unknowns = '';
+    if (kmap.length === 8) {
+        unknowns = 'a,b,c';
+    } else {
+        unknowns = 'a,b,c,d';
+    }
+
     // Set the question
     // document.getElementById('question').innerText = `Find the ${answerType} for the following MUX configuration: ${JSON.stringify(inputs)}`;
-    document.getElementById('question').innerHTML = `Find the <u>${answerType}</u> for the following MUX configuration.`;
+    document.getElementById('question').innerHTML = `Find the <u>${answerType}</u> of the function Y(${unknowns}) for the given MUX configuration.`;
 
     // Draw the multiplexer
     const circuitDiv = document.getElementById('circuit');
@@ -646,7 +668,7 @@ function checkAnswer(selectedButton, selectedOption, correctAnswer) {
 qn_generator();
 
 // Add event listener to the next button to generate a new question
-document.getElementById('next-btn').addEventListener('click', () => {
+document.getElementById('next-btn').addEventListener('click', () => {    
     // Reset the background color and enable the option buttons
     const optionButtons = document.querySelectorAll('.option');
     optionButtons.forEach(button => {
@@ -654,6 +676,8 @@ document.getElementById('next-btn').addEventListener('click', () => {
         button.disabled = false;  // Enable button
     });
 
+    // hide the solutions
+    document.getElementById('real-solution').classList.add('hidden');
     // Hide the "Solution" button
     document.getElementById('solution').classList.add('hidden');
     // Hide the "Next Question" button
@@ -667,7 +691,128 @@ document.getElementById('next-btn').addEventListener('click', () => {
     qn_generator();
 });
 
+function drawtable(inputs, num_of_input) {
+    let minterm = [];
+    let maxterm = [];
+    let z = {
+        "A": ['a', 'a\u0304'],
+        "B": ['b', 'b\u0304'],
+        "C": ['c', 'c\u0304'],
+        "binary": ['0', '1']
+    };
+
+    if (num_of_input === 8) {
+        z["D"] = ['d', 'd\u0304'];
+    }
+
+    let table = {};
+    for (let x = 0; x < 2 ** (Object.keys(z).length - 1); x++) {
+        table[x] = [x.toString(2).padStart(Object.keys(z).length - 1, '0')];
+    }
+
+    for (let index = 0; index < 2 ** (Object.keys(z).length - 1); index++) {
+        let selector = "";
+        for (let key in inputs) {
+            if (key.startsWith("S")) {
+                if (inputs[key].charCodeAt(0) < 97) {
+                    selector = inputs[key][0] + selector;
+                } else {
+                    let k = parseInt(String.fromCharCode(inputs[key].charCodeAt(0) - 49));
+                    if (inputs[key].length > 1) {
+                        selector = String(Math.abs(parseInt(table[index][0][k]) - 1)) + selector;
+                    } else {
+                        selector = table[index][0][k] + selector;
+                    }
+                }
+            }
+        }
+        table[index].push(selector);
+
+        // Finding target (input) for the given selector
+        let target = "I" + parseInt(selector, 2);
+        table[index].push(target);
+        let value = inputs[target];
+        let y;
+
+        if (value.includes(' ')) {
+            let [first, gate, second] = value.split(' ');
+
+            // First
+            let w;
+            if (first.charCodeAt(0) < 97) {
+                w = first[0];
+            } else {
+                let k = parseInt(String.fromCharCode(first.charCodeAt(0) - 49));
+                if (first.length > 1) {
+                    w = String(Math.abs(parseInt(table[index][0][k]) - 1));
+                } else {
+                    w = table[index][0][k];
+                }
+            }
+
+            // Second
+            let x;
+            if (second.charCodeAt(0) < 97) {
+                x = second[0];
+            } else {
+                let k = parseInt(String.fromCharCode(second.charCodeAt(0) - 49));
+                if (second.length > 1) {
+                    x = String(Math.abs(parseInt(table[index][0][k]) - 1));
+                } else {
+                    x = table[index][0][k];
+                }
+            }
+
+            // Calls for the global gate function
+            let gateFunction = window[gate];
+            y = gateFunction(w, x);
+
+        } else {
+            if (value.charCodeAt(0) < 97) {
+                y = value[0];
+            } else {
+                let k = parseInt(String.fromCharCode(value.charCodeAt(0) - 49));
+                if (value.length > 1) {
+                    y = String(Math.abs(parseInt(table[index][0][k]) - 1));
+                } else {
+                    y = table[index][0][k];
+                }
+            }
+        }
+
+        table[index].push(y);
+        if (y === '1') {
+            minterm.push(index);
+        } else if (y === '0') {
+            maxterm.push(index);
+        }
+    }
+
+    console.log(table);
+    console.log("minterm is: " + minterm);
+    console.log("maxterm is: " + maxterm);
+
+    // Plot the table in the #real-solution div
+    let realSolutionDiv = document.getElementById('solution-container');
+    let tableHTML = '<table border="1"><tr><th>Index</th><th>Variables</th><th>Selector</th><th>Target Input</th><th>Y</th></tr>';
+    for (let index in table) {
+        tableHTML += `<tr><td>${index}</td><td>${table[index][0]}</td><td>${table[index][1]}</td><td>${table[index][2]}</td><td>${table[index][3]}</td></tr>`;
+    }
+    tableHTML += '</table>';
+    realSolutionDiv.innerHTML = tableHTML;
+}
+
 // other functions
+// Add event listener to the #solution button
+document.getElementById('solution').addEventListener('click', function() {
+    const realSolutionDiv = document.getElementById('real-solution');
+    if (realSolutionDiv.classList.contains('hidden')) {
+        realSolutionDiv.classList.remove('hidden');
+    } else {
+        realSolutionDiv.classList.add('hidden');
+    }
+});
+
 // DOMcontentloaded event listener for animated background 
 document.addEventListener('DOMContentLoaded', function() {
     const animatedBackground = document.getElementById('animated-background');
