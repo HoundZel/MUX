@@ -30,7 +30,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
+    width: min(90%,1400px);
     text-align: center;
     display: flex;
     flex-direction: column;
