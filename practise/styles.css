@@ -104,6 +104,21 @@ body {
     align-items: center;
 }
 
+#solutions_table{
+    border-collapse: collapse;
+    width: 100%;
+    font-family: 'Arial Unicode MS';
+}
+
+#solutions_table th{
+    background-color: #44443c;
+    color: white;
+}
+
+/* #solutions_table td{
+    background-color: #fdeec3;
+} */
+
 .hidden {
     display: none;
 }
@@ -182,5 +197,15 @@ body {
 
     .padder{
         grid-column: span 2;
+    }
+
+    #solutions_table{
+        font-size: 1.5vw;
+    }
+
+    #solutions_table th, #solutions_table td {
+        text-align: center; /* Center align text in table cells */
+        padding: 10px; /* Add padding to table cells */
+        border: 1px solid black; 
     }
 }

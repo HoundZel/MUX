@@ -60,6 +60,9 @@ function initializeMux() {
 
     if (num_of_input === 8) {
         z["D"] = ['d', drawLineAboveLetter('d')];
+        table_abcd = "abcd";
+    } else{
+        table_abcd = "abc";
     }
 
     let z_track = JSON.parse(JSON.stringify(z));
@@ -74,6 +77,7 @@ function initializeMux() {
         }
     }
 
+    //generate question MUX
     for (let i in inputs) {
         if (Object.keys(z_track).length === 0) {
             inputs[i] = z[Object.keys(z)[Math.floor(Math.random() * Object.keys(z).length)]][Math.floor(Math.random() * 2)];
@@ -126,7 +130,19 @@ function initializeMux() {
     let gate_names = ['AND', 'OR', 'XOR', 'XNOR', 'NAND', 'NOR'];
     let gate_pattern = new RegExp('\\b(' + gate_names.join('|') + ')\\b');
 
+    // Plot the table in the #real-solution div
+    // Create table headerss
+    let tableHTML = `<table id="solutions_table" border="1"><tr><th>Terms</th><th>${table_abcd}</th>`;
+    for (let i = 0; i < num_of_input; i++) {
+        tableHTML += `<th>I<sub style="font-size: 0.7em; vertical-align: sub;">${i}</sub></th>`;
+    }
+    for (let j = num_of_select-1; j >= 0; j--) {
+        tableHTML += `<th>S<sub style="font-size: 0.7em; vertical-align: sub;">${j}</sub></th>`;
+    }
+    tableHTML += `<th>Select</th><th>Y</th></tr>`;
+
     for (let kmap_index of kmap_bin) {
+        rowHTML = `<td>${parseInt(kmap_index,2)}</td><td>${kmap_index}</td>`;
         let curr_input = JSON.parse(JSON.stringify(inputs));
         let abcd = {};
 
@@ -152,21 +168,51 @@ function initializeMux() {
                 // Call the function with the arguments
                 let result = gate_function(value_1, value_2);
                 curr_input[j] = result;
-            }
-
-            if (abcd[curr_input[j]]) {
+                rowHTML += `<td>${result}</td>`;
+            } else if (abcd[curr_input[j]]) {
                 curr_input[j] = abcd[curr_input[j]];
+                if (j.includes("S")){
+                    continue;
+                } else {
+                    rowHTML += `<td>${curr_input[j]}</td>`;
+                }
+            } else {
+                if (j.includes("S")){
+                    continue;
+                } else {
+                    rowHTML += `<td>${curr_input[j]}</td>`;
+                }
             }
         }
+        // console.log("curr_input is: " + JSON.stringify(curr_input));
 
         let selector_combi = Object.keys(curr_input).filter(key => key.startsWith('S')).sort().reverse().map(key => curr_input[key]).join('');
+        for (let k = 0; k <selector_combi.length; k++) {
+            rowHTML += `<td>${selector_combi[k]}</td>`;
+        }
 
         for (let k = 0; k < truth_table.length; k++) {
             if (selector_combi === truth_table[k]) {
                 kmap.push(curr_input['I' + k]);
+                let rowstyle = '';
+                if (curr_input['I' + k] === '1') {
+                    rowstyle = '#f1f1f1';
+                } else if (curr_input['I' + k] === '0') {
+                    rowstyle = '#fdeec3';
+                }
+                rowHTML += `<td>${'I' + k}</td><td>${curr_input['I' + k]}</td>`;
+                tableHTML += `<tr bgcolor="${rowstyle}">${rowHTML}</tr>`;
             }
         }
     }
+    //end solution table drawing
+    tableHTML += '</table>';
+
+    // Set the inner HTML of the realSolutionDiv
+    let realSolutionDiv = document.getElementById('solution-container');
+    realSolutionDiv.innerHTML = tableHTML;
+
+    realSolutionDiv.innerHTML = tableHTML;
 
     console.log("kmap is: " + JSON.stringify(kmap));
 
@@ -189,9 +235,6 @@ function initializeMux() {
         console.log("Empty minterm or maxterm detected. Regenerating MUX configuration.");
         return initializeMux();
     }
-
-    // Draw the table
-    drawtable(inputs, num_of_input);
 
     // Return the generated values
     return { inputs, minterm, maxterm, kmap };
@@ -337,14 +380,14 @@ function drawMultiplexer(circuitDiv, inputs) {
             svg.appendChild(text2);
 
         } else {
-            // draw logic gates
+            // fill gate values
             const [val1, gate, val2] = inputs[`I${i}`].split(" ");
 
             const texttop = document.createElementNS(svgNS, "text");
             texttop.setAttribute("x", "20");
             texttop.setAttribute("y", yValue-1.5);
             texttop.setAttribute("text-anchor", "end");
-            texttop.setAttribute("font-size", "4");
+            texttop.setAttribute("font-size", "5");
             texttop.textContent = val1;
             svg.appendChild(texttop);
 
@@ -352,28 +395,52 @@ function drawMultiplexer(circuitDiv, inputs) {
             textbot.setAttribute("x", "20");
             textbot.setAttribute("y", yValue+4);
             textbot.setAttribute("text-anchor", "end");
-            textbot.setAttribute("font-size", "4");
+            textbot.setAttribute("font-size", "5");
             textbot.textContent = val2;
             svg.appendChild(textbot);
 
-            const topline = document.createElementNS(svgNS, "line");
-            topline.setAttribute("x1", 27.5);
-            topline.setAttribute("y1", yValue-1.25);
-            topline.setAttribute("x2", 22);
-            topline.setAttribute("y2", yValue-1.25);
-            topline.setAttribute("stroke", "black");
-            topline.setAttribute("stroke-width", "0.5");
-            svg.appendChild(topline);
+            // draw lines
+            if (gate === "AND" || gate === "NAND") {
+                const topline = document.createElementNS(svgNS, "line");
+                topline.setAttribute("x1", 27.5);
+                topline.setAttribute("y1", yValue-1.25);
+                topline.setAttribute("x2", 22);
+                topline.setAttribute("y2", yValue-1.25);
+                topline.setAttribute("stroke", "black");
+                topline.setAttribute("stroke-width", "0.5");
+                svg.appendChild(topline);
 
-            const botline = document.createElementNS(svgNS, "line");
-            botline.setAttribute("x1", 27.5);
-            botline.setAttribute("y1", yValue+1.25);
-            botline.setAttribute("x2", 22);
-            botline.setAttribute("y2", yValue+1.25);
-            botline.setAttribute("stroke", "black");
-            botline.setAttribute("stroke-width", "0.5");
-            svg.appendChild(botline);
+                const botline = document.createElementNS(svgNS, "line");
+                botline.setAttribute("x1", 27.5);
+                botline.setAttribute("y1", yValue+1.25);
+                botline.setAttribute("x2", 22);
+                botline.setAttribute("y2", yValue+1.25);
+                botline.setAttribute("stroke", "black");
+                botline.setAttribute("stroke-width", "0.5");
+                svg.appendChild(botline);
+            }
 
+            if (gate === "OR" || gate === "NOR" || gate === "XOR" || gate === "XNOR") {
+                const topline = document.createElementNS(svgNS, "line");
+                topline.setAttribute("x1", 28.3);
+                topline.setAttribute("y1", yValue-1.25);
+                topline.setAttribute("x2", 22);
+                topline.setAttribute("y2", yValue-1.25);
+                topline.setAttribute("stroke", "black");
+                topline.setAttribute("stroke-width", "0.5");
+                svg.appendChild(topline);
+    
+                const botline = document.createElementNS(svgNS, "line");
+                botline.setAttribute("x1", 28.3);
+                botline.setAttribute("y1", yValue+1.25);
+                botline.setAttribute("x2", 22);
+                botline.setAttribute("y2", yValue+1.25);
+                botline.setAttribute("stroke", "black");
+                botline.setAttribute("stroke-width", "0.5");
+                svg.appendChild(botline);
+            }
+
+            // draw logic gates
             if (gate === "AND") {
                 const circle = document.createElementNS(svgNS, "circle");
                 circle.setAttribute("cx", 32.5);
@@ -691,9 +758,11 @@ document.getElementById('next-btn').addEventListener('click', () => {
     qn_generator();
 });
 
+// second algo to draw table (now useless bcos doesn't tablue all inputs)
 function drawtable(inputs, num_of_input) {
     let minterm = [];
     let maxterm = [];
+    let table_abcd = ""
     let z = {
         "A": ['a', 'a\u0304'],
         "B": ['b', 'b\u0304'],
@@ -703,6 +772,9 @@ function drawtable(inputs, num_of_input) {
 
     if (num_of_input === 8) {
         z["D"] = ['d', 'd\u0304'];
+        table_abcd = "abcd";
+    } else{
+        table_abcd = "abc";
     }
 
     let table = {};
@@ -791,15 +863,6 @@ function drawtable(inputs, num_of_input) {
     console.log(table);
     console.log("minterm is: " + minterm);
     console.log("maxterm is: " + maxterm);
-
-    // Plot the table in the #real-solution div
-    let realSolutionDiv = document.getElementById('solution-container');
-    let tableHTML = '<table border="1"><tr><th>Index</th><th>Variables</th><th>Selector</th><th>Target Input</th><th>Y</th></tr>';
-    for (let index in table) {
-        tableHTML += `<tr><td>${index}</td><td>${table[index][0]}</td><td>${table[index][1]}</td><td>${table[index][2]}</td><td>${table[index][3]}</td></tr>`;
-    }
-    tableHTML += '</table>';
-    realSolutionDiv.innerHTML = tableHTML;
 }
 
 // other functions
