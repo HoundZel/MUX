@@ -84,6 +84,7 @@ body {
 #solution {
     background-color: #cfada9;
     color: white;
+    height: 100%;
     padding: 10px;
     border: none;
     border-radius: 20px;
@@ -147,6 +148,10 @@ body {
 
 /* PC version */
 @media (min-width: 769px) {
+    #question{
+        font-size: 1.5vw;
+    }
+
     #orientation-container{
         display: flex;
         flex-direction: row;

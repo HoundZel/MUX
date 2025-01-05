@@ -45,7 +45,7 @@
     </div>
 
     <div class="quiz-container">
-        <h1><u>Quiz</u></h1>
+        <!-- <h1><u>Quiz</u></h1> -->
         <br>
         <div id="question-container">
             <h3 id="question">Question will appear here</h3>
@@ -60,7 +60,7 @@
                 <div class="option">Option 4</div>
                 <div class="row3">
                     <br>
-                    <button id="solution">Solution</button>
+                    <a href="#solution-container" id="solution-anchor"><button id="solution">Solution</button></a>
                     <button id="next-btn">Next Question &gt;&gt; </button>
                 </div>
                 <div class="padder"></div>
@@ -74,5 +74,25 @@
     </div>
 
     <script src="logic.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('#solution-anchor');
+    
+            for (const link of links) {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html> 
