@@ -28,7 +28,7 @@ function NOR(x, y) {
     return String(1 - (Number(x) | Number(y)));
 }
 
-function initializeMux() {
+function initializeMux(answerType) {
     // Hide the "Solution" button
     document.getElementById('solution').classList.add('hidden');
     // Hide the "Next Question" button
@@ -185,6 +185,12 @@ function initializeMux() {
             }
         }
         // console.log("curr_input is: " + JSON.stringify(curr_input));
+        let highlight = '';
+        if (answerType === "minterm Σm(…)") {
+            highlight += '1';
+        } else {
+            highlight += '0';
+        }
 
         let selector_combi = Object.keys(curr_input).filter(key => key.startsWith('S')).sort().reverse().map(key => curr_input[key]).join('');
         for (let k = 0; k <selector_combi.length; k++) {
@@ -195,9 +201,9 @@ function initializeMux() {
             if (selector_combi === truth_table[k]) {
                 kmap.push(curr_input['I' + k]);
                 let rowstyle = '';
-                if (curr_input['I' + k] === '1') {
+                if (curr_input['I' + k] !== highlight) {
                     rowstyle = '#f1f1f1';
-                } else if (curr_input['I' + k] === '0') {
+                } else if (curr_input['I' + k] === highlight) {
                     rowstyle = '#fdeec3';
                 }
                 rowHTML += `<td>${'I' + k}</td><td>${curr_input['I' + k]}</td>`;
@@ -242,20 +248,22 @@ function initializeMux() {
 
 // Function to generate the question and options
 function qn_generator() {
-    // Initialize the MUX and get the generated values
-    const { inputs, minterm, maxterm, kmap } = initializeMux();
-
     // Randomly decide between minterm and maxterm
-    let answerType = Math.random() < 0.5 ? "minterm" : "maxterm";
+    let answerType = Math.random() < 0.5 ? "minterm Σm(…)" : "maxterm ΠM(…)";
+
+    // Initialize the MUX and get the generated values
+    const { inputs, minterm, maxterm, kmap } = initializeMux(answerType);
 
     // Determine the correct answer based on the random choice
-    let correctAnswer = answerType === "minterm" ? minterm : maxterm;
+    let correctAnswer = answerType === "minterm Σm(…)" ? minterm : maxterm;
 
     // Check if the correct answer is empty
     if (correctAnswer.length === 0) {
         alert(`The ${answerType} is empty. Generating a new question.`);
         qn_generator(); // Generate a new question
         return;
+    } else if (correctAnswer.length > 1){
+        answerType = answerType.slice(0, 7) + "s" + answerType.slice(7);
     }
 
     // Determine the number of unknowns based on the length of the kmap
