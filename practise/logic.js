@@ -242,8 +242,22 @@ function initializeMux(answerType) {
         return initializeMux();
     }
 
+    let [altminterm, altmaxterm] = altalgo(inputs, num_of_input);
+    if (!arraysEqual(altminterm, minterm) || !arraysEqual(altmaxterm, maxterm)) {
+        console.log("Mismatched minterm or maxterm detected. Regenerating MUX configuration.");
+        return initializeMux();
+    }
+
     // Return the generated values
     return { inputs, minterm, maxterm, kmap };
+}
+
+function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+    }
+    return true;
 }
 
 // Function to generate the question and options
@@ -307,7 +321,13 @@ function qn_generator() {
     // Set the options
     let optionButtons = document.querySelectorAll('.option');
     options.forEach((option, index) => {
-        optionButtons[index].innerText = JSON.stringify(option);
+        // Create a display string with "[" replaced by "{" and "]" replaced by "}"
+        let displayOption = JSON.stringify(option).replace(/\[/g, '{').replace(/\]/g, '}');
+        
+        // Set the display string as the button text
+        optionButtons[index].innerText = displayOption;
+        
+        // Set the onclick handler with the original option value
         optionButtons[index].onclick = () => checkAnswer(optionButtons[index], option, correctAnswer);
     });
 }
@@ -710,7 +730,7 @@ function drawMultiplexer(circuitDiv, inputs) {
 
 // Function to check if the selected answer is correct
 function checkAnswer(selectedButton, selectedOption, correctAnswer) {
-    let correctOption = JSON.stringify(correctAnswer);
+    let correctOption = JSON.stringify(correctAnswer).replace(/\[/g, '{').replace(/\]/g, '}');
 
     // Highlight the correct option in green
     const optionButtons = document.querySelectorAll('.option');
@@ -767,7 +787,7 @@ document.getElementById('next-btn').addEventListener('click', () => {
 });
 
 // second algo to draw table (now useless bcos doesn't tablue all inputs)
-function drawtable(inputs, num_of_input) {
+function altalgo(inputs, num_of_input) {
     let minterm = [];
     let maxterm = [];
     let table_abcd = ""
@@ -869,8 +889,10 @@ function drawtable(inputs, num_of_input) {
     }
 
     console.log(table);
-    console.log("minterm is: " + minterm);
-    console.log("maxterm is: " + maxterm);
+    console.log("minterm is: " + JSON.stringify(minterm));
+    console.log("maxterm is: " + JSON.stringify(maxterm));
+
+    return [minterm, maxterm];
 }
 
 // other functions

@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Garamond, serif;
     background-color: #313338;
     display: flex;
     justify-content: center;
@@ -46,7 +46,7 @@ body {
 
 #question{
     max-width: 100%;
-    font-size: 1.5em;;
+    font-size: 1.5em;
     word-wrap: break-word;
 }
 
@@ -108,7 +108,7 @@ body {
 #solutions_table{
     border-collapse: collapse;
     width: 100%;
-    font-family: 'Arial Unicode MS';
+    font-family: Garamond, serif;
 }
 
 #solutions_table th{
