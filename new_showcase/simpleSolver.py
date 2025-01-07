@@ -51,6 +51,7 @@ def evaluate_expression(expression, values):
 
 # Function to generate the truth table and find minterms and maxterms
 def generate_truth_table(expression):
+    output = []
     minterms = []
     maxterms = []
 
@@ -62,23 +63,26 @@ def generate_truth_table(expression):
         
         if result:
             minterms.append(index)
+            output.append(1)
         else:
             maxterms.append(index)
+            output.append(0)
 
-    return minterms, maxterms
+    return minterms, maxterms, output
 
 # Main function to demonstrate the usage
 def main():
     # Example boolean algebra expression
-    expression = "A AND B OR NOT C AND D"
+    expression = "NOT B AND D OR A AND NOT C"
 
     # Generate the truth table and find minterms and maxterms
-    minterms, maxterms = generate_truth_table(expression)
+    minterms, maxterms, output = generate_truth_table(expression)
 
     # Print the results
     print(f"Expression: {expression}")
     print(f"Minterms: {minterms}")
     print(f"Maxterms: {maxterms}")
+    print(f"Output: {output}")
 
 if __name__ == "__main__":
     main()
