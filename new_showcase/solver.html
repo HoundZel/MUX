@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUX - Showcase</title>
+    <link rel="icon" href="../media/MUX_final.ico" type="image/x-icon">
+    <link href="solver.css" rel="stylesheet" />
+    <link href="../navbar.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header_content">
+            <a href="../index.html" class="logo">MUX</a>
+            <nav class="nav">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="../index.html" class="nav_link">Home</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#head" class="nav_link">Showcase</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="../practise/practise.html" class="nav_link">Quiz</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="dropdown">
+            <select id="multiplexer-select">
+                <option value="2-to-1">2 to 1 Multiplexer</option>
+                <option value="4-to-1" selected>4 to 1 Multiplexer</option>
+                <option value="8-to-1">8 to 1 Multiplexer</option>
+                <option value="16-to-1">16 to 1 Multiplexer</option>
+            </select>
+        </div>
+        <div class="mux">
+            <div id="multiplexer-container"></div>
+        </div>
+        <div class="truth_table"></div>
+    </div>
+
+    <script src="solver.js"></script>
+    <script>
+        const navE1 = document.querySelector('.nav');
+        const hamburgerE1 = document.querySelector('.hamburger');
+        const navListE1 = document.querySelector('.nav_list');
+
+        hamburgerE1.addEventListener('click', () => {
+            navListE1.classList.toggle('open');
+        });
+
+        navListE1.addEventListener('click', () => {
+            navListE1.classList.remove('open');
+        });
+    </script>
+</body>
+</html>
