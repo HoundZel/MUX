@@ -322,7 +322,7 @@ function qn_generator() {
     let optionButtons = document.querySelectorAll('.option');
     options.forEach((option, index) => {
         // Create a display string with "[" replaced by "{" and "]" replaced by "}"
-        let displayOption = JSON.stringify(option).replace(/\[/g, '{').replace(/\]/g, '}');
+        let displayOption = JSON.stringify(option).replace(/\[/g, '(').replace(/\]/g, ')');
         
         // Set the display string as the button text
         optionButtons[index].innerText = displayOption;
@@ -730,7 +730,7 @@ function drawMultiplexer(circuitDiv, inputs) {
 
 // Function to check if the selected answer is correct
 function checkAnswer(selectedButton, selectedOption, correctAnswer) {
-    let correctOption = JSON.stringify(correctAnswer).replace(/\[/g, '{').replace(/\]/g, '}');
+    let correctOption = JSON.stringify(correctAnswer).replace(/\[/g, '(').replace(/\]/g, ')');
 
     // Highlight the correct option in green
     const optionButtons = document.querySelectorAll('.option');
