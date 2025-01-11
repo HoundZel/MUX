@@ -432,3 +432,44 @@ dd{
 .solutionTable td{
     background-color: rgb(255, 255, 255);
 }
+
+/* for logic gates section */
+.gatevisuals svg{
+    width:30%;
+    aspect-ratio: 1/1;
+}
+
+.tablevisuals table {
+    width: 100%;
+    table-layout: fixed; /* Ensure the table cells are evenly distributed */
+    color: black;
+}
+
+.tablevisuals table tr th, .tablevisuals table tr td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px; /* Add padding to table headers and cells */
+    text-align: center; /* Center align text in table headers and cells */
+}
+
+.tablevisuals table tr th {
+    background-color: #FDE899;
+}
+
+.tablevisuals table tr td {
+    background-color: rgb(241, 241, 241);
+}
+
+/* Mobile version */
+@media (max-width: 768px) {
+    .logicvisuals div{
+        width: 100%;
+    }
+}
+
+/* PC version */
+@media (min-width: 769px) {
+    .logicvisuals div{
+        width: max(50%, 500px);
+    }
+}
