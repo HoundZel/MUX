@@ -28,7 +28,7 @@
                         <a href="old_showcase/showcase.html" class="nav_link">Beta</a>
                     </li> -->
                     <li class="nav_item">
-                        <a href="../showcase/showcase.html" class="nav_link">Showcase</a>
+                        <a href="solver.html" class="nav_link">Showcase</a>
                     </li>
                     <li class="nav_item">
                         <a href="../practise/practise.html" class="nav_link">Quiz</a>
@@ -47,9 +47,9 @@
     <div class="show-container">
         <br>
         <div id="type-container">
-            <select name="type" id="type" onchange="changeType()">
+            <select name="type" id="type" onchange="getMuxVariants()">
                 <option value="1">2-to-1</option>
-                <option value="2">4-to-1</option>
+                <option value="2" selected>4-to-1</option>
                 <option value="3">8-to-1</option>
                 <option value="4">16-to-1</option>
             </select>
@@ -57,16 +57,7 @@
         <div id="orientation-container">
             <div id="circuit"></div>
             <div id="input-container">
-                <div class="padder"></div>
-                <div class="option">Option 1</div>
-                <div class="option">Option 2</div>
-                <div class="option">Option 3</div>
-                <div class="option">Option 4</div>
-                <div class="row3">
-                    <br>
-                    <a href="#solution-container" id="solution-anchor"><button id="solution">Submit</button></a>
-                </div>
-                <div class="padder"></div>
+
             </div>
         </div>
         <br>

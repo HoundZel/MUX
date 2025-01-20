@@ -44,41 +44,9 @@ body {
     margin-bottom: 20px;
 }
 
-#question{
-    max-width: 100%;
-    font-size: 1.5em;
-    word-wrap: break-word;
-}
-
 #circuit{
     aspect-ratio: 1/1;
     font-family: 'Arial Unicode MS';
-}
-
-.option {
-    background-color: #7c746c;
-    color: white;
-    border: 5px solid rgb(255, 255, 255);
-    border-radius: 20px;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.option:hover {
-    background-color: #44443c;
-}
-
-#next-btn {
-    background-color: #77b3ea;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-#next-btn:hover {
-    background-color: #3384eb;
 }
 
 #solution {
@@ -95,9 +63,9 @@ body {
     background-color: #a18683;
 }
 
-#real-solution{
+/* #real-solution{
     border-top: 1px solid gray;
-}
+} */
 
 #solution-container {
     display: flex;
@@ -115,10 +83,6 @@ body {
     background-color: #44443c;
     color: white;
 }
-
-/* #solutions_table td{
-    background-color: #fdeec3;
-} */
 
 .hidden {
     display: none;
@@ -139,19 +103,10 @@ body {
         display: flex;
         flex-direction: column;
     }
-
-    .option{
-        width: 98%;
-        margin: 5px;
-    }
 }
 
 /* PC version */
 @media (min-width: 769px) {
-    #question{
-        font-size: 1.5vw;
-    }
-
     #orientation-container{
         display: flex;
         flex-direction: row;
@@ -170,38 +125,9 @@ body {
         grid-template-rows: 5% 35% 35% 15% 10%;
         gap: 10px; 
     }
-
-    .option{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-        font-size: 1.5vw;
-    }
-
-    #next-btn {
-        padding: 15px;
-        font-size: 1.6vw;
-    }
     #solution {
         padding: 15px;
         font-size: 1.4vw;
-    }
-
-    .row3 {
-        grid-column: span 2; /* Make the row3 span across both columns */
-        display: flex;
-        justify-content: right;
-        align-items: right;
-        gap: 5px; /* Optional: Add some space between the buttons */
-    }
-
-    .padder{
-        grid-column: span 2;
     }
 
     #solutions_table{
