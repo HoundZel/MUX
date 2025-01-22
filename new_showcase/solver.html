@@ -46,7 +46,7 @@
 
     <div class="show-container">
         <br>
-        <div id="type-container">
+        <div id="type-container" class="input-group">
             <select name="type" id="type" onchange="getMuxVariants()">
                 <option value="1">2-to-1</option>
                 <option value="2" selected>4-to-1</option>
@@ -57,7 +57,35 @@
         <div id="orientation-container">
             <div id="circuit"></div>
             <div id="input-container">
-
+                <br>
+                <div id="selectors-header">
+                    <span style="font-weight: bold; text-decoration: underline;">Variables</span>
+                </div>
+                <br>
+                <div id="var-container">
+                    <label for="variables"> </label>
+                    <select name="variables" id="variables">
+                        <option value="2">A, B</option>
+                        <option value="3" selected>A, B, C</option>
+                        <option value="4">A, B, C, D</option>
+                        <option value="5">A, B, C, D, E</option>
+                        <option value="6">A, B, C, D, E, F</option>
+                    </select>
+                </div>
+                <br>
+                <div id="inputss"></div>
+                <br>
+                <div id="special-btn">
+                    <button onclick="insertSymbol('+')"> + (OR) </button>
+                    <button onclick="insertSymbol('⊕')"> ⊕ (XOR) </button>
+                    <button onclick="insertSymbol('⊖')"> ⊖ (XNOR) </button>
+                    <button onclick="insertSymbol('•')"> • (AND) </button>
+                    <button onclick="insertSymbol('\'')"> ' (NOT) </button>
+                </div>
+                <br>
+                <div id="submit-btn">
+                    <button onclick="submit()">Solve</button>
+                </div>
             </div>
         </div>
         <br>
@@ -86,6 +114,19 @@
                     }
                 });
             }
+        });
+
+        const navE1 = document.querySelector('.nav');
+        const hamburgerE1 = document.querySelector('.hamburger');
+
+        hamburgerE1.addEventListener('click', () => {
+        navE1.classList.toggle("nav--open");
+        hamburgerE1.classList.toggle("hamburger--open");
+        });
+
+        navE1.addEventListener('click', () => {
+        navE1.classList.remove("nav--open");
+        hamburgerE1.classList.remove("hamburger--open");
         });
     </script>
 </body>

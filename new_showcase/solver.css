@@ -47,6 +47,45 @@ body {
 #circuit{
     aspect-ratio: 1/1;
     font-family: 'Arial Unicode MS';
+    border: 1px solid rgb(42, 38, 38);
+    border-radius: 20px;
+}
+
+#var-container {
+    display: flex;
+    align-items: center;
+}
+
+#var-container label {
+    width: 10%; /* Adjust the width of the label */
+    text-align: right; /* Align text to the right */
+    margin-right: 10px; /* Add some space between label and input */
+}
+
+#var-container select {
+    width: 77%; /* Set the width of the input fields */
+}
+
+#inputss {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Add some space between elements */
+    padding-right: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+#inputss label {
+    width: 10%; /* Adjust the width of the label */
+    text-align: right; /* Align text to the right */
+    margin-right: 10px; /* Add some space between label and input */
+}
+
+#inputss input {
+    width: 80%; /* Set the width of the input fields */
 }
 
 #solution {
@@ -102,6 +141,7 @@ body {
     #input-container {
         display: flex;
         flex-direction: column;
+        gap: 10px;
     }
 }
 
@@ -120,10 +160,8 @@ body {
         box-sizing: border-box;
         width: 60%;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: 5% 35% 35% 15% 10%;
-        gap: 10px; 
+        display: flex;
+        flex-direction: column;
     }
     #solution {
         padding: 15px;
