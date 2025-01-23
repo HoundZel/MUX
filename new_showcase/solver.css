@@ -51,6 +51,11 @@ body {
     border-radius: 20px;
 }
 
+input:focus {
+    border: 2px solid rgb(80, 155, 234); /* Set the border to 2px solid blue */
+    outline: none; /* Remove the default outline */
+}
+
 #var-container {
     display: flex;
     align-items: center;
