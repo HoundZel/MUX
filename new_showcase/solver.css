@@ -262,6 +262,10 @@ font-family: Garamond, serif;
 
 /* Mobile version */
 @media (max-width: 768px) {
+    #type option[value="4"] {
+        display: none;
+    }
+    
     #orientation-container{
         display: flex;
         flex-direction: column;
