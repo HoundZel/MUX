@@ -44,6 +44,55 @@ body {
     margin-bottom: 20px;
 }
 
+.popup {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: white;
+    z-index: 1000; /* Ensure it is on top */
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.popup-content {
+    overflow-y: auto; /* Scrollable content */
+    max-height: 100%;
+}
+
+#information:hover + .popup,
+.popup:hover {
+    display: block; /* Show the popup when hovering over the SVG or the popup itself */
+}
+
+select {
+    font-family: Garamond, serif;
+    font-size: 1.2em;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  select:focus {
+    border-color: #80b3ff;
+    box-shadow: 0 0 5px rgba(128, 179, 255, 0.5);
+  }
+  
+  select option {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 10px;
+  }
+
 #circuit{
     aspect-ratio: 1/1;
     font-family: 'Arial Unicode MS';
@@ -91,6 +140,85 @@ input:focus {
 
 #inputss input {
     width: 80%; /* Set the width of the input fields */
+}
+
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #e1ebfb;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: Garamond, serif;
+  font-weight: 500;
+  min-height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 16%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-54 {
+font-family: Garamond, serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+#submit-btn {
+    width: 75%; /* Set the width of the submit-btn div */
+    margin: 0 auto; /* Center the submit-btn div */
+    display: flex;
+    justify-content: flex-end; /* Align the button to the right */
 }
 
 #solution {
@@ -148,6 +276,10 @@ input:focus {
         flex-direction: column;
         gap: 10px;
     }
+
+    .button-17{
+        font-size: 0.7em;
+    }
 }
 
 /* PC version */
@@ -167,6 +299,7 @@ input:focus {
         margin: 0 auto;
         display: flex;
         flex-direction: column;
+        font-size: 1.5vw;
     }
     #solution {
         padding: 15px;
@@ -181,5 +314,9 @@ input:focus {
         text-align: center; /* Center align text in table cells */
         padding: 10px; /* Add padding to table cells */
         border: 1px solid black; 
+    }
+
+    .button-17{
+        font-size: 0.8em;
     }
 }

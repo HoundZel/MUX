@@ -142,6 +142,9 @@ function getMuxVariants() {
     var inputplus1 = Number(inputs)+1;
     // console.log(selectors);
 
+    //Reset existing table 
+    document.getElementById('solution-container').innerHTML = '';
+
     const circuitDiv = document.getElementById('circuit');
 
     //Draw MUX 
