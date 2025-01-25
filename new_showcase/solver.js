@@ -18,11 +18,11 @@ function parseBooleanEquation(equation, variableValues) {
     };
 
     // Preprocess the equation to insert '•' where necessary
-    equation = equation.replace(/([A-F01])([A-F01])/g, '$1•$2') // Between consecutive variables
-                       .replace(/([)])([A-F01(])/g, '$1•$2')    // Between ) and ( or variables
-                       .replace(/(['])\(/g, '$1•(')             // Between ' and (
-                       .replace(/(['])([A-F01])/g, '$1•$2')   // Between ' and variables
-                       .replace(/([A-F01])\(/g, '$1•(');        // Between variables and (
+    equation = equation.replace(/([A-F01])(?=[A-F01])/g, '$1•') // Add '•' between consecutive variables
+                        .replace(/([)])(?=[A-F01(])/g, '$1•')    // Add '•' between ')' and '(' or variables
+                        .replace(/(['])(?=\()/g, '$1•')          // Add '•' between ' and '('
+                        .replace(/(['])(?=[A-F01])/g, '$1•')     // Add '•' between ' and variables
+                        .replace(/([A-F01])(?=\()/g, '$1•');     // Add '•' between variables and '('
 
     console.log("Preprocessed Equation:", equation);
 
@@ -36,9 +36,9 @@ function parseBooleanEquation(equation, variableValues) {
             } else if ("()⊕+•⊖'".includes(eq[i])) {  // Operators
                 tokens.push(eq[i]);
                 i++;
-            } else if (/\w/.test(eq[i]) || /[01]/.test(eq[i])) {  // Variables or 0/1
+            } else if (/[A-F01]/.test(eq[i])) {  // Variables or 0/1
                 let start = i;
-                while (i < eq.length && (/\w/.test(eq[i]) || /[01]/.test(eq[i]))) {
+                while (i < eq.length && /[A-F01]/.test(eq[i])) {
                     i++;
                 }
                 tokens.push(eq.slice(start, i));
@@ -55,10 +55,10 @@ function parseBooleanEquation(equation, variableValues) {
         const stack = [];
         for (let j = 0; j < tokens.length; j++) {
             const token = tokens[j];
-            if (/\w/.test(token) || /[01]/.test(token)) {
+            if (/[A-F01]/.test(token)) {
                 output.push(token);
                 // Check for implicit AND
-                if (j + 1 < tokens.length && (/\w/.test(tokens[j + 1]) || /[01]/.test(tokens[j + 1]))) {
+                if (j + 1 < tokens.length && /[A-F01]/.test(tokens[j + 1])) {
                     output.push('•');
                 }
             } else if (token === '(') {
@@ -89,7 +89,7 @@ function parseBooleanEquation(equation, variableValues) {
     function evaluatePostfix(postfix, variableValues) {
         const stack = [];
         postfix.forEach(token => {
-            if (/\w/.test(token) || /[01]/.test(token)) {
+            if (/[A-F01]/.test(token)) {
                 // Convert '0' and '1' to boolean values
                 const value = token === '1' ? true : token === '0' ? false : variableValues[token] === '1' ? true : false;
                 stack.push(value);
