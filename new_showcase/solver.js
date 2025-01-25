@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function parseBooleanEquation(equation, variableValues) {
+    // console.log("Equation:", equation);
+    // console.log("Variable Values:", variableValues);
+
     const precedence = {
         '(': 0,  // Lowest precedence for brackets
         '+': 1,  // OR
@@ -78,7 +81,9 @@ function parseBooleanEquation(equation, variableValues) {
         const stack = [];
         postfix.forEach(token => {
             if (/\w/.test(token) || /[01]/.test(token)) {
-                stack.push(variableValues[token]);
+                // Convert '0' and '1' to boolean values
+                const value = token === '1' ? true : token === '0' ? false : variableValues[token] === '1' ? true : false;
+                stack.push(value);
             } else if (token === "'") {
                 const a = stack.pop();
                 stack.push(!a);
@@ -101,14 +106,17 @@ function parseBooleanEquation(equation, variableValues) {
 
     // Tokenize, convert to postfix, and evaluate
     const tokens = tokenize(equation);
+    // console.log("Tokens:", tokens);
     const postfix = infixToPostfix(tokens);
+    // console.log("Postfix:", postfix);
     const result = evaluatePostfix(postfix, variableValues);
+    // console.log("Result:", result);
 
-    return {result};
+    return { result };
 }
 
 // Example Usage
-const equation = "C ⊖ (A • (B + C))' ⊕ D";  // Input equation
+let equation = "C ⊖ (A • (B + C))' ⊕ D";  // Input equation
 // const variableValues = { 'A': 1, 'B': 0, 'C': 1, 'D': 1 };
 
 // Parse and evaluate the equation
