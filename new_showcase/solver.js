@@ -17,6 +17,15 @@ function parseBooleanEquation(equation, variableValues) {
         "'": 4   // NOT
     };
 
+    // Preprocess the equation to insert '•' where necessary
+    equation = equation.replace(/([A-F01])([A-F01])/g, '$1•$2') // Between consecutive variables
+                       .replace(/([)])([A-F01(])/g, '$1•$2')    // Between ) and ( or variables
+                       .replace(/(['])\(/g, '$1•(')             // Between ' and (
+                       .replace(/(['])([A-F01])/g, '$1•$2')   // Between ' and variables
+                       .replace(/([A-F01])\(/g, '$1•(');        // Between variables and (
+
+    console.log("Preprocessed Equation:", equation);
+
     // Convert equation to tokens
     function tokenize(eq) {
         const tokens = [];
