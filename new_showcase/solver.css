@@ -41,27 +41,24 @@ body {
 } */
 
 #type-container {
+    align-self: center;
     margin-bottom: 20px;
 }
 
-.popup {
-    display: none; /* Initially hidden */
-    position: fixed;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    color: white;
-    z-index: 1000; /* Ensure it is on top */
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 10px;
+h2{
+    font-family: Garamond, serif;
+    font-size: 2em;
+    align-self: center;
+    margin-bottom: 20px;
 }
 
 .popup-content {
     overflow-y: auto; /* Scrollable content */
     max-height: 100%;
+}
+
+#information {
+    cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 #information:hover + .popup,
@@ -71,27 +68,30 @@ body {
 
 select {
     font-family: Garamond, serif;
-    font-size: 1.2em;
+    font-size: 1em;
     padding: 5px;
+    align-self: center;
+    width: 75%;
     border: 2px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #c1c1c1;
+    color: #000000;
     cursor: pointer;
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  
-  select:focus {
+}
+
+select:focus {
     border-color: #80b3ff;
     box-shadow: 0 0 5px rgba(128, 179, 255, 0.5);
-  }
-  
-  select option {
+}
+
+select option {
+    text-align: center;
     background-color: #f9f9f9;
     color: #333;
     padding: 10px;
-  }
+}
 
 #circuit{
     aspect-ratio: 1/1;
@@ -240,9 +240,13 @@ font-family: Garamond, serif;
 } */
 
 #solution-container {
-    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#solution-container p{
+    font-size: 1.5em;
+    text-align: left;
 }
 
 #solutions_table{
@@ -284,6 +288,22 @@ font-family: Garamond, serif;
     .button-17{
         font-size: 0.7em;
     }
+
+    .popup {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: auto;
+        text-align: left;
+        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+        color: white;
+        z-index: 1000; /* Ensure it is on top */
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
 }
 
 /* PC version */
@@ -322,5 +342,19 @@ font-family: Garamond, serif;
 
     .button-17{
         font-size: 0.8em;
+    }
+
+    .popup {
+        display: none; /* Initially hidden */
+        position: absolute; /* Use absolute positioning */
+        width: auto;
+        height: auto;
+        text-align: left;
+        background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+        color: white;
+        z-index: 1000; /* Ensure it is on top */
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
     }
 }

@@ -476,6 +476,10 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
     const num_of_input = Object.keys(inputValues).length;
     const num_of_select = Object.keys(selectorValues).length;
     const num_of_var = 2 ** (Object.keys(table_abcd).length);
+
+    let minterm = "Minterms = Σm(";
+    let maxterm = "Maxterms = ΠM(";
+
     console.log("test: " + num_of_var);
 
     // Plot the table in the #real-solution div
@@ -521,13 +525,46 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
         rowHTML += `<td>${result}</td>`;
 
         // Add the row to the table
-        tableHTML += `<tr>${rowHTML}</tr>`;
+        if (result === 1) {
+            minterm += terms + ", ";
+            tableHTML += `<tr bgcolor="#fdeec3">${rowHTML}</tr>`;
+        }
+        if (result === 0) {
+            maxterm += terms + ", ";
+            tableHTML += `<tr bgcolor="#f1f1f1">${rowHTML}</tr>`;
+        }
     }
 
     //end solution table drawing
     tableHTML += '</table>';
 
+    minterm = minterm.slice(0, -2) + ")";
+    maxterm = maxterm.slice(0, -2) + ")";
+    console.log(minterm);
+    console.log(maxterm);
+
     // Set the inner HTML of the realSolutionDiv
     let realSolutionDiv = document.getElementById('solution-container');
-    realSolutionDiv.innerHTML = tableHTML;
+    realSolutionDiv.innerHTML = `<hr><br><p>${minterm}</p><p>${maxterm}</p><br>${tableHTML}`;
 }
+
+//informtaion popup
+document.addEventListener('DOMContentLoaded', (event) => {
+    const svg = document.getElementById('information');
+    const popup = document.getElementById('popup');
+
+    svg.addEventListener('mouseover', (e) => {
+        popup.style.display = 'block';
+        popup.style.top = `${e.clientY}px`;
+        popup.style.left = `${e.clientX - popup.offsetWidth}px`;
+    });
+
+    svg.addEventListener('mousemove', (e) => {
+        popup.style.top = `${e.clientY}px`;
+        popup.style.left = `${e.clientX - popup.offsetWidth}px`;
+    });
+
+    svg.addEventListener('mouseout', () => {
+        popup.style.display = 'none';
+    });
+});
