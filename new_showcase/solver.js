@@ -314,10 +314,30 @@ function validateInput(input, regex) {
         input.style.border = "2px solid red"; // Red border if the input is invalid
         input.setCustomValidity("Invalid input");
         input.reportValidity();
+    } else if (!areBracketsBalanced(input.value)) {
+        input.style.border = "2px solid red"; // Red border if the brackets are not balanced
+        input.setCustomValidity("Unmatched brackets");
+        input.reportValidity();
     } else {
         input.style.border = "2px solid green"; // Green border if the input is valid
         input.setCustomValidity("");
     }
+}
+
+// Function to check if brackets are balanced
+function areBracketsBalanced(input) {
+    let stack = [];
+    for (let char of input) {
+        if (char === '(') {
+            stack.push(char);
+        } else if (char === ')') {
+            if (stack.length === 0) {
+                return false; // Unmatched closing bracket
+            }
+            stack.pop();
+        }
+    }
+    return stack.length === 0; // True if no unmatched opening brackets
 }
 
 let focusedInput = null;
@@ -506,6 +526,7 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
         let curr_input = {};
         for (let key in inputValues) {
             const { result } = parseBooleanEquation(inputValues[key], variableValues);
+            console.log("Result:", result);
             rowHTML += `<td>${result}</td>`;
             curr_input[key] = result;
         }
@@ -514,6 +535,7 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
         let curr_selector = '';
         for (let key in selectorValues) {
             const { result } = parseBooleanEquation(selectorValues[key], variableValues);
+            console.log("Result:", result);
             rowHTML += `<td>${result}</td>`;
             curr_selector += result;
         }
