@@ -1,7 +1,8 @@
 //initialise the page
 document.addEventListener('DOMContentLoaded', (event) => {
     // Call getMuxVariants when the page loads
-    getMuxVariants();
+    window.selectors = Math.floor(Math.random() * 2) + 2;
+    getMuxVariants(selectors);
 });
 
 function qn_generator(selectors) {
@@ -9,6 +10,9 @@ function qn_generator(selectors) {
     const variables = ['0', '1', 'A', 'B', 'C'];
     if (selectors == 3) {
         variables.push('D');
+        var dee = ',d';
+    }else{
+        var dee = '';
     };
 
     const input_line = [];
@@ -48,6 +52,18 @@ function qn_generator(selectors) {
             qnmaxterm.push(i);
         }
     }
+
+    // Check if qnminterm or qnmaxterm is the longer array
+    let longerArray;
+    if (qnminterm.length > qnmaxterm.length) {
+        longerArray = "minterm Σm (" + qnminterm.join(",") + ")";
+    } else {
+        longerArray = "maxterm ΠM (" + qnmaxterm.join(",") + ")";
+    }
+    console.log("Longer Array: ", longerArray);
+
+    //display the question to user
+    document.getElementById('question').innerHTML = `Given the logic function Y(a,b,c${dee}), in terms of <u>${longerArray}</u>, input the expression for each pin to obtain the given function at the output Y.`;
 
     console.log("Input solution: ", input_line);
     console.log("Selector solution(flipped): ", selector_line);
@@ -225,8 +241,7 @@ let equation = "C ⊖ (A • (B + C))' ⊕ D";  // Input equation
 // console.log(`Evaluation Result: ${result}`);
 
 //get MUX variants and draw mux and create input fields
-function getMuxVariants() {
-    var selectors = Math.floor(Math.random() * 2) + 2;
+function getMuxVariants(selectors) {
     //call function to generate the question
     qn_generator(selectors);
     var selplus1 = Number(selectors)+1;
@@ -437,7 +452,7 @@ let redLine = null;
 
 // Event listener to track the focused input field
 document.addEventListener('focusin', (event) => {
-    if (event.target.tagName === 'INPUT' && event.target.type === 'text') {
+    if (event.target.tagName === 'INPUT') {
         focusedInput = event.target;
 
         // Check if the input ID starts with "selector"
@@ -451,7 +466,7 @@ document.addEventListener('focusin', (event) => {
 
 // Event listener to remove the red line when the input field loses focus
 document.addEventListener('focusout', (event) => {
-    if (event.target.tagName === 'INPUT' && event.target.type === 'text') {
+    if (event.target.tagName === 'INPUT') {
         if (redLine) {
             redLine.remove();
             redLine = null;
@@ -462,7 +477,7 @@ document.addEventListener('focusout', (event) => {
 // Function to draw a red line for selector inputs based on the input ID
 function drawRedLineForSelector(inputId) {
     const index = parseInt(inputId.split('-')[2], 10); // Extract the index from the input ID
-    const selectors = document.getElementById('type').value;
+    // const selectors = document.getElementById('type').value;
     const selplus1 = Number(selectors) + 1;
     const width = selectors * 10.5 + 10.5;
     const height = selectors * 17 + 17;
@@ -486,7 +501,7 @@ function drawRedLineForSelector(inputId) {
 // Function to draw a red line for input boxes based on the input ID
 function drawRedLineForInput(inputId) {
     const index = parseInt(inputId.split('-')[1], 10); // Extract the index from the input ID
-    const selectors = document.getElementById('type').value;
+    // const selectors = document.getElementById('type').value;
     const inputs = 2 ** selectors;
     const inputplus1 = Number(inputs) + 1;
     const width = selectors * 10.5 + 10.5;

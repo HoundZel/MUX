@@ -52,6 +52,18 @@ h2{
     margin-bottom: 20px;
 }
 
+#question-container {
+    margin-bottom: 20px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+#question{
+    max-width: 100%;
+    font-size: 1.5em;
+    word-wrap: break-word;
+}
+
 select {
     font-family: Garamond, serif;
     font-size: 1em;
@@ -195,7 +207,7 @@ font-family: Garamond, serif;
 }
 
 @media (min-width: 768px) {
-  .button-54 {
+    .button-54 {
     padding: 0.25em 0.75em;
   }
 }
