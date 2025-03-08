@@ -15,8 +15,8 @@ function qn_generator(selectors) {
         var dee = '';
     };
 
-    const input_line = [];
-    const selector_line = [];
+    window.input_line = [];
+    window.selector_line = [];
     for (let i = 0; i < selectors; i++) {
         selector_line.push(input_gen(variables));
     };
@@ -28,8 +28,8 @@ function qn_generator(selectors) {
     variables.splice(0, 2);
 
     var terms = 2 ** variables.length;
-    qnminterm = [];
-    qnmaxterm = [];
+    window.qnminterm = [];
+    window.qnmaxterm = [];
     for (let i = 0; i < terms; i++) {
         let terms_bin = i.toString(2).padStart(variables.length, '0');
         let variableValues = {};
@@ -599,7 +599,7 @@ function submit() {
 
 // Function to generate the truth table
 function generateTruthTable(allterms, selectorValues, inputValues) {
-    const table_abcd = Array.from(allterms).sort().join('');
+    const table_abcd = selectors === 2 ? 'ABC' : 'ABCD';
     const num_of_input = Object.keys(inputValues).length;
     const num_of_select = Object.keys(selectorValues).length;
     const num_of_var = 2 ** (Object.keys(table_abcd).length);
@@ -618,10 +618,10 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
     for (let j = num_of_select-1; j >= 0; j--) {
         tableHTML += `<th>S<sub style="font-size: 0.7em; vertical-align: sub;">${j}</sub></th>`;
     }
-    tableHTML += `<th>Select</th><th>Y</th></tr>`;
+    tableHTML += `<th>Select</th><th>Y</th><th>ans</th></tr>`;
 
     for (let terms = 0; terms < num_of_var; terms++) {
-        let terms_bin = terms.toString(2).padStart(allterms.size, '0');
+        let terms_bin = terms.toString(2).padStart(table_abcd.length, '0');
         let variableValues = {};
         //crating the abcd dict for calculation function
         for (let i = 0; i < table_abcd.length; i++) {
@@ -653,14 +653,28 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
         const result = curr_input[`I${selectorIndex}`];
         rowHTML += `<td>${result}</td>`;
 
+        if (window.qnminterm.includes(terms)) {
+            rowHTML += `<td>1</td>`;
+        }else{
+            rowHTML += `<td>0</td>`;
+        };
+
         // Add the row to the table
-        if (result === 1) {
+        if (result === 1 ) {
             minterm += terms + ", ";
-            tableHTML += `<tr bgcolor="#fdeec3">${rowHTML}</tr>`;
+            if (window.qnminterm.includes(terms)){
+                tableHTML += `<tr bgcolor="#C2F1C8">${rowHTML}</tr>`;
+            }else{
+                tableHTML += `<tr>${rowHTML}</tr>`;
+            }
         }
         if (result === 0) {
             maxterm += terms + ", ";
-            tableHTML += `<tr bgcolor="#f1f1f1">${rowHTML}</tr>`;
+            if (window.qnmaxterm.includes(terms)){
+                tableHTML += `<tr bgcolor="#C2F1C8">${rowHTML}</tr>`;
+            }else{
+                tableHTML += `<tr>${rowHTML}</tr>`;
+            }
         }
     }
 
@@ -672,7 +686,32 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
     console.log(minterm);
     console.log(maxterm);
 
+    let matcher = 'Minterms = Σm(';
+    for (let i of window.qnminterm) {
+        matcher += i + ', ';
+    }
+    matcher = matcher.slice(0, -2) + ')'
+
+    let reveal = ''
+    if (minterm === matcher){
+        reveal = '<p>Your configuration is <span style="color: green;">Valid</span>.</p>'
+    } else {
+        reveal = '<p>Your configuration is <span style="color: red;">Invalid</span>, Try this Configuration:</p><br>'
+        for (i in input_line){
+            reveal += `<p>I${i}: ${input_line[i]}</p>`
+        };
+        reveal += '<br>';
+        for (let i = selector_line.length - 1; i >= 0; i--) {
+            reveal += `<p>S${i}: ${selector_line[i]}</p>`;
+        }
+    };
+
     // Set the inner HTML of the realSolutionDiv
     let realSolutionDiv = document.getElementById('solution-container');
-    realSolutionDiv.innerHTML = `<hr><br><p>${minterm}</p><p>${maxterm}</p><br>${tableHTML}`;
+    realSolutionDiv.innerHTML = `<hr><br>${reveal}<br>${tableHTML}`;
 }
+
+function next(){
+    window.selectors = Math.floor(Math.random() * 2) + 2;
+    getMuxVariants(selectors);
+};
