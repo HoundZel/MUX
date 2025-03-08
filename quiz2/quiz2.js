@@ -551,7 +551,7 @@ function submit() {
         return;
     } else {
         let submitbtn = document.getElementById('solution-anchor');
-        submitbtn.innerHTML = '(Re)submit';
+        submitbtn.innerHTML = '(Re)submit →';
     }
 
     // Organise the user inputs b4 calculating
@@ -716,7 +716,7 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
 
 function next(){
     let submitbtn = document.getElementById('solution-anchor');
-    submitbtn.innerHTML = 'Submit';
+    submitbtn.innerHTML = 'Submit  →';
 
     window.selectors = Math.floor(Math.random() * 2) + 2;
     getMuxVariants(selectors);
