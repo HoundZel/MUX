@@ -549,6 +549,9 @@ function submit() {
     if (!allValid) {
         alert("Invalid or empty input");
         return;
+    } else {
+        let submitbtn = document.getElementById('solution-anchor');
+        submitbtn.innerHTML = '(Re)submit';
     }
 
     // Organise the user inputs b4 calculating
@@ -712,6 +715,9 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
 }
 
 function next(){
+    let submitbtn = document.getElementById('solution-anchor');
+    submitbtn.innerHTML = 'Submit';
+
     window.selectors = Math.floor(Math.random() * 2) + 2;
     getMuxVariants(selectors);
 };
