@@ -1203,6 +1203,35 @@
                 });
             }
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            let isScrolling = false;
+
+            window.addEventListener("scroll", function () {
+                if (isScrolling) return;
+
+                const navBar = document.querySelector("#nav_bar");
+                const navRect = navBar.getBoundingClientRect(); // Get navbar position
+                const windowHeight = window.innerHeight;
+
+                // Check if the navbar is in the bottom half of the page
+                if (navRect.top > windowHeight / 2) {
+                    isScrolling = true;
+                    window.scrollTo({
+                        top: navRect.top,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => { isScrolling = false; }, 1000); // Adjust timeout as needed
+                } else if (navRect.top > windowHeight * 0.05 && navRect.top < windowHeight * 0.45) {
+                    isScrolling = true;
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => { isScrolling = false; }, 1000); // Adjust timeout as needed
+                }
+            });
+        });
     </script>
 </body>
 </html>
