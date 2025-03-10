@@ -56,14 +56,14 @@ function qn_generator(selectors) {
     // Check if qnminterm or qnmaxterm is the longer array
     let longerArray;
     if (qnminterm.length > qnmaxterm.length) {
-        longerArray = "minterm Σm (" + qnminterm.join(",") + ")";
+        longerArray = "Σm (" + qnminterm.join(",") + ")";
     } else {
-        longerArray = "maxterm ΠM (" + qnmaxterm.join(",") + ")";
+        longerArray = "ΠM (" + qnmaxterm.join(",") + ")";
     }
     console.log("Longer Array: ", longerArray);
 
     //display the question to user
-    document.getElementById('question').innerHTML = `Given the logic function Y(a,b,c${dee}), in terms of <u>${longerArray}</u>, input the expression for each pin to obtain the given function at the output Y.`;
+    document.getElementById('question').innerHTML = `Given the function Y(a,b,c${dee}) = <u>${longerArray}</u>, input the expression for each pin to obtain the given function at the output Y`;
 
     console.log("Input solution: ", input_line);
     console.log("Selector solution(flipped): ", selector_line);
@@ -315,7 +315,7 @@ function getMuxVariants(selectors) {
 
         const text = document.createElementNS(svgNS, "text");
         text.setAttribute("x", sel_pos +2);
-        text.setAttribute("y", base + 9);
+        text.setAttribute("y", base - 2);
         text.setAttribute("text-anchor", "end");
         text.setAttribute("font-size", "4");
         text.textContent = `S${i}`;
@@ -335,7 +335,7 @@ function getMuxVariants(selectors) {
         svg.appendChild(line);
 
         const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", left - 7);
+        text.setAttribute("x", left + 5);
         text.setAttribute("y", input_pos + 2);
         text.setAttribute("text-anchor", "end");
         text.setAttribute("font-size", "4");
@@ -621,7 +621,7 @@ function generateTruthTable(allterms, selectorValues, inputValues) {
     for (let j = num_of_select-1; j >= 0; j--) {
         tableHTML += `<th>S<sub style="font-size: 0.7em; vertical-align: sub;">${j}</sub></th>`;
     }
-    tableHTML += `<th>Select</th><th>Y</th><th>ans</th></tr>`;
+    tableHTML += `<th>Select</th><th>Y</th><th>Expected Y</th></tr>`;
 
     for (let terms = 0; terms < num_of_var; terms++) {
         let terms_bin = terms.toString(2).padStart(table_abcd.length, '0');
