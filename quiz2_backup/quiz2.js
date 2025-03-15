@@ -15,65 +15,41 @@ function qn_generator(selectors) {
         var dee = '';
     };
 
+    window.input_line = [];
+    window.selector_line = [];
+    for (let i = 0; i < selectors; i++) {
+        selector_line.push(input_gen(variables));
+    };
+    for (let i = 0; i < inputs; i++) {
+        input_line.push(input_gen(variables));
+    };
+
+    // Remove the first 2 elements from the variables array
     variables.splice(0, 2);
 
     var terms = 2 ** variables.length;
     window.qnminterm = [];
     window.qnmaxterm = [];
-    window.expected = []
     for (let i = 0; i < terms; i++) {
-        if (Math.random() < 0.5) {
+        let terms_bin = i.toString(2).padStart(variables.length, '0');
+        let variableValues = {};
+        //crating the abcd dict for calculation function
+        for (let i = 0; i < variables.length; i++) {
+            variableValues[variables[i]] = terms_bin[i];
+        }
+        // console.log("Variable Values:", variableValues);
+        sel = '';
+        for (let j = 0; j < selectors; j++) {
+            const { result } = parseBooleanEquation(selector_line[j], variableValues);
+            sel = result + sel;
+        }
+        // console.log("selected: ", sel);
+        const selIndex = parseInt(sel, 2);
+        const { result } = parseBooleanEquation(input_line[selIndex], variableValues);
+        if (result === 1) {
             qnminterm.push(i);
-            expected.push(1);
         } else {
             qnmaxterm.push(i);
-            expected.push(0);
-        }
-    }
-
-    // Ensure the shorter array has at least 1/4 the length of terms
-    while (Math.min(qnminterm.length, qnmaxterm.length) < Math.floor(terms / 4)) {
-        if (qnminterm.length > qnmaxterm.length) {
-            // Move a random element from qnminterm to qnmaxterm
-            const randomIndex = Math.floor(Math.random() * qnminterm.length);
-            const element = qnminterm.splice(randomIndex, 1)[0];
-            qnmaxterm.push(element);
-
-            // Flip the binary integer in the expected array
-            expected[element] = expected[element] === 1 ? 0 : 1;
-        } else {
-            // Move a random element from qnmaxterm to qnminterm
-            const randomIndex = Math.floor(Math.random() * qnmaxterm.length);
-            const element = qnmaxterm.splice(randomIndex, 1)[0];
-            qnminterm.push(element);
-
-            // Flip the binary integer in the expected array
-            expected[element] = expected[element] === 1 ? 0 : 1;
-        }
-    }
-
-    //calculate possible answers
-    window.input_line = [];
-    // Clone the variables array and reverse it
-    window.selector_line = [...variables].reverse();
-    window.selector_line.shift();
-
-    for (let i = 0; i < expected.length; i += 2) {
-        var temp = expected[i].toString() + expected[i + 1].toString();
-        if (temp == '01') {
-            input_line.push(variables[variables.length - 1]); // Last element
-        } else if (temp == '10') {
-            input_line.push(variables[variables.length - 1] + "'"); // Last element with NOT
-        } else if (temp == '00' && i <= inputs / 2) {
-            input_line.push(variables[0]); // Second-to-last element
-        } else if (temp == '11' && i <= inputs / 2) {
-            input_line.push(variables[0] + "'"); // Second-to-last element with NOT
-        } else if (temp == '00' && i > inputs / 2) {
-            input_line.push(variables[0] + "'"); // Second-to-last element with NOT
-        } else if (temp == '11' && i > inputs / 2) {
-            input_line.push(variables[0]); // Second-to-last element
-        } else {
-            input_line.push(3);
         }
     }
 
@@ -85,12 +61,12 @@ function qn_generator(selectors) {
         longerArray = "ΠM (" + qnmaxterm.join(",") + ")";
     }
     console.log("Longer Array: ", longerArray);
-    console.log("expected:", expected);
 
     //display the question to user
     document.getElementById('question').innerHTML = `Given the function Y(a,b,c${dee}) = <u>${longerArray}</u>, input the expression for each pin to obtain the given function at the output Y`;
 
-    console.log("Input Line: ", input_line);
+    console.log("Input solution: ", input_line);
+    console.log("Selector solution(flipped): ", selector_line);
     console.log("Question Minterms: ", qnminterm);
     console.log("Question Maxterms: ", qnmaxterm);
 
@@ -100,8 +76,6 @@ function qn_generator(selectors) {
     };
 };
 
-
-//creates random bool eqn at each input/selc (will not use)
 function input_gen(variables) {
     var input = '';
     const operators = ['+', '⊕', '⊖', '•'];
