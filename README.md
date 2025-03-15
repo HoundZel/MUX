@@ -9,17 +9,12 @@
     What are *Multiplexers* ?
     The multiplexer is a combinational logic circuit designed to switch 
     one of several input lines to a single common output line.
-    
-    For the EE2104 curriculum, we are focusing on 4 multiplexers, namely the:
-    + 2-to-1
-    + **4-to-1**
-    + **8-to-1**
-    + 16-to-1
 
-### Features to implement 
-    1. randomly generated multiplexer questions and have users key-in
-       / pick the correct ans. (MUX and DMUX) (minterm & maxterm)
-    2. showcase the internals of a MUX/DMUX ?
+### Avaliable Features
+<ol>
+    <li>Landing page - incudes summarised reading content and useful links</li>
+    <li>Showcase - Uses Shunting Yard Algorithm to solve user input MUX configuartion (supports up to 1-to-16 MUX on PC and 1-to-8 on mobile)</li>
+    <li>Quiz 1.0 - Multiple Choice Questions Given MUX configuration, solve the Min/Maxterm/li>
+    <li>Quiz 2.0 - Fill-in-the-Blank Questions. Given Min/Maxterm, give a valid MUX config</li>
+</ol>
 
-### current progress
-    NONE 
