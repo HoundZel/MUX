@@ -208,7 +208,7 @@ function getMuxVariants() {
 
         const text = document.createElementNS(svgNS, "text");
         text.setAttribute("x", sel_pos +2);
-        text.setAttribute("y", base + 9);
+        text.setAttribute("y", base -2);
         text.setAttribute("text-anchor", "end");
         text.setAttribute("font-size", "4");
         text.textContent = `S${i}`;
@@ -228,7 +228,7 @@ function getMuxVariants() {
         svg.appendChild(line);
 
         const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", left - 7);
+        text.setAttribute("x", left + 5);
         text.setAttribute("y", input_pos + 2);
         text.setAttribute("text-anchor", "end");
         text.setAttribute("font-size", "4");
@@ -493,12 +493,13 @@ function submit() {
 // Function to generate the truth table
 function generateTruthTable(allterms, selectorValues, inputValues) {
     const table_abcd = Array.from(allterms).sort().join('');
+    const table_abcd_split = table_abcd.split('').join(',');
     const num_of_input = Object.keys(inputValues).length;
     const num_of_select = Object.keys(selectorValues).length;
     const num_of_var = 2 ** (Object.keys(table_abcd).length);
 
-    let minterm = "Minterms = Σm(";
-    let maxterm = "Maxterms = ΠM(";
+    let minterm = `Y(${table_abcd_split}) = Σm(`;
+    let maxterm = `Y(${table_abcd_split}) = ΠM(`;
 
     console.log("test: " + num_of_var);
 
