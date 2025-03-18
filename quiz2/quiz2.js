@@ -1,8 +1,14 @@
 //initialise the page
 document.addEventListener('DOMContentLoaded', (event) => {
+    // Detect the width of the browser and set selectors accordingly
+    if (window.innerWidth < 768) {
+        window.selectors = 2; // For smaller screens
+    } else {
+        window.selectors = Math.floor(Math.random() * 2) + 2; // For larger screens
+    }
+
     // Call getMuxVariants when the page loads
-    window.selectors = Math.floor(Math.random() * 2) + 2;
-    getMuxVariants(selectors);
+    getMuxVariants(window.selectors);
 });
 
 function qn_generator(selectors) {
@@ -64,17 +70,21 @@ function qn_generator(selectors) {
             input_line.push(variables[variables.length - 1]); // Last element
         } else if (temp == '10') {
             input_line.push(variables[variables.length - 1] + "'"); // Last element with NOT
-        } else if (temp == '00' && i <= inputs / 2) {
-            input_line.push(variables[0]); // Second-to-last element
-        } else if (temp == '11' && i <= inputs / 2) {
-            input_line.push(variables[0] + "'"); // Second-to-last element with NOT
-        } else if (temp == '00' && i > inputs / 2) {
-            input_line.push(variables[0] + "'"); // Second-to-last element with NOT
-        } else if (temp == '11' && i > inputs / 2) {
-            input_line.push(variables[0]); // Second-to-last element
+        } else if (temp == '00') {
+            input_line.push(0);
+        } else if (temp == '11') {
+            input_line.push(1);
         } else {
             input_line.push(3);
         }
+        // } else if (temp == '00' && i <= inputs / 2) {
+        //     input_line.push(variables[0]); // Second-to-last element
+        // } else if (temp == '11' && i <= inputs / 2) {
+        //     input_line.push(variables[0] + "'"); // Second-to-last element with NOT
+        // } else if (temp == '00' && i > inputs / 2) {
+        //     input_line.push(variables[0] + "'"); // Second-to-last element with NOT
+        // } else if (temp == '11' && i > inputs / 2) {
+        //     input_line.push(variables[0]); // Second-to-last element
     }
 
     // Check if qnminterm or qnmaxterm is the longer array
@@ -744,6 +754,10 @@ function next(){
     let submitbtn = document.getElementById('solution-anchor');
     submitbtn.innerHTML = 'Submit  →';
 
-    window.selectors = Math.floor(Math.random() * 2) + 2;
+    if (window.innerWidth < 768) {
+        window.selectors = 2; // For smaller screens
+    } else {
+        window.selectors = Math.floor(Math.random() * 2) + 2; // For larger screens
+    }
     getMuxVariants(selectors);
 };
