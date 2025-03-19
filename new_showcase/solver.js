@@ -9,7 +9,7 @@ function parseBooleanEquation(equation, variableValues) {
     // console.log("Variable Values:", variableValues);
 
     const precedence = {
-        '(': 0,  // Lowest precedence for brackets
+        '(': 0,  // higest piority for brackets
         '+': 1,  // OR
         '⊕': 2,  // XOR
         '⊖': 2,  // XNOR
